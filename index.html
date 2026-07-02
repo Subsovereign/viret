@@ -250,7 +250,7 @@
       <div style="max-width:640px;margin-bottom:80px">
         <h2 class="sec-h" style="font-family:'Source Serif 4',serif;font-weight:400;font-size:40px;line-height:1.2;margin:0 0 20px">Build something that lasts.</h2>
         <p style="font-size:17px;line-height:1.65;color:rgba(246,243,236,.75);margin:0 0 34px">If you're a funder, a ministry, or an institution turning AI into impact — let's talk.</p>
-        <a href="mailto:dan@subsovereign.com" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-size:15px;font-weight:500;background:#f6f3ec;color:#201e19;padding:14px 28px">Start a conversation →</a>
+        <a id="contact-cta" href="#contact" data-u="nad" data-d="moc.ngierevosbus" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-size:15px;font-weight:500;background:#f6f3ec;color:#201e19;padding:14px 28px">Start a conversation →</a>
       </div>
       <div style="border-top:1px solid rgba(246,243,236,.15);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
         <div style="display:flex;align-items:center;gap:14px">
@@ -263,6 +263,18 @@
   </footer>
 
 </div>
+
+<script>
+  // Assemble the contact email at runtime so it never appears in the
+  // static HTML that email harvesters scrape (they don't run JS).
+  (function () {
+    var a = document.getElementById('contact-cta');
+    if (!a) return;
+    var rev = function (s) { return s.split('').reverse().join(''); };
+    var addr = rev(a.getAttribute('data-u')) + '@' + rev(a.getAttribute('data-d'));
+    a.setAttribute('href', 'mailto:' + addr);
+  })();
+</script>
 
 </body>
 </html>
