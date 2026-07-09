@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Vıret — Investor Briefing</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%23f6f3ec'/%3E%3Ccircle%20cx='16'%20cy='13'%20r='4.5'%20fill='%23164136'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f6f3ec;--card:#ece9e0;--ink:#201e19;--ink2:#5c574d;--ink3:#8a847a;
+  --green:#164136;--green2:#2a6b57;--sage:#7fb8a4;
+  --serif:'Source Serif 4',serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+::selection{background:var(--green);color:var(--bg)}
+
+/* Progress */
+.progress{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;gap:6px;padding:12px 24px;background:linear-gradient(180deg,rgba(246,243,236,.95) 60%,transparent)}
+.pdot{flex:1;height:3px;border-radius:2px;background:#d8d3c6;cursor:pointer;transition:background .3s var(--ease)}
+.pdot.on{background:var(--green)}.pdot.was{background:var(--sage)}
+.scnt{position:fixed;top:10px;right:24px;z-index:101;font:12px var(--mono);color:var(--ink3);font-variant-numeric:tabular-nums}
+
+/* Deck */
+.deck{position:relative;width:100%;height:100%;overflow:hidden}
+.sl{position:absolute;inset:0;display:flex;flex-direction:column;padding:44px 48px 64px;opacity:0;pointer-events:none;transform:translateX(50px);transition:opacity .35s var(--ease),transform .35s var(--ease);overflow-y:auto}
+.sl::before,.sl::after{content:'';flex:1 0 0px}
+.sl.on{opacity:1;pointer-events:auto;transform:translateX(0)}
+.sl.was{transform:translateX(-50px)}
+.sl-c{max-width:940px;width:100%;margin:0 auto;flex-shrink:0}
+.sl-center{text-align:center;display:flex;flex-direction:column;align-items:center}
+
+/* Nav */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:linear-gradient(0deg,rgba(246,243,236,.95) 60%,transparent)}
+.nb{background:none;border:1px solid transparent;color:var(--ink3);font:500 14px var(--sans);cursor:pointer;padding:8px 16px;border-radius:6px;transition:all .2s}
+.nb:hover:not(:disabled){color:var(--ink);border-color:#c9c3b4}.nb:disabled{opacity:.3;cursor:default}
+.nb.hl{border-color:var(--green);color:var(--green)}
+.nh{font:12px var(--mono);color:var(--ink3)}
+
+/* Type */
+h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);font-weight:500;line-height:1.12;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.5rem);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h3{font-size:clamp(.95rem,1.9vw,1.25rem);font-weight:600;line-height:1.3}
+p,.bt{font-size:clamp(.9rem,1.55vw,1.06rem);line-height:1.6;color:var(--ink2)}
+strong{color:var(--ink);font-weight:600}
+.acc{color:var(--green2)}
+.kick{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--green2);margin-bottom:14px}
+.sub{font-size:clamp(.78rem,1.2vw,.88rem);color:var(--ink3);letter-spacing:.02em}
+.fn{font-size:12.5px;color:var(--ink3);margin-top:20px;font-style:italic}
+.fn a,.rc a{color:inherit;text-decoration:underline;text-decoration-color:#b5ae9e;text-underline-offset:2px}
+.fn a:hover,.rc a:hover{color:var(--green2)}
+
+/* Competitor logos */
+.lgrow{display:flex;gap:14px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.lg{height:13px;width:auto;display:block;color:var(--ink2);opacity:.8}
+.lg path{fill:currentColor}
+tr.us .lg{color:#dfe8e2}
+
+.brand{font-family:var(--serif);font-size:clamp(3rem,7vw,5rem);font-weight:500;letter-spacing:.01em;color:var(--green)}
+
+/* Wordmark tittle: hand-placed circle over the dotless ı */
+.ti{position:relative;display:inline-block}
+.ti::after{content:'';position:absolute;left:50%;top:.24em;transform:translateX(-50%);width:.15em;height:.15em;border-radius:50%;background:var(--green)}
+.ti-x::after{left:62%}
+.ti-s::after{background:var(--sage)}
+
+/* Cards & grids */
+.c{background:var(--card);border:1px solid #ddd8ca;border-radius:10px;padding:20px 24px}
+.c-g{border-left:3px solid var(--green)}
+.c-s{border-left:3px solid var(--sage)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+@media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
+@media(max-width:900px){.g4{grid-template-columns:1fr 1fr}}
+
+.m-num{font-family:var(--serif);font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:500;line-height:1;color:var(--green)}
+.m-u{font-size:12.5px;color:var(--ink2);margin-top:6px;line-height:1.4}
+
+.ri{display:flex;gap:16px;align-items:flex-start;padding:13px 0;border-bottom:1px solid #ddd8ca}
+.ri:last-child{border-bottom:none}
+.rn{width:32px;height:32px;border-radius:50%;background:var(--green);color:var(--bg);font:600 13px var(--sans);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rc h3{margin-bottom:2px;font-size:15px}.rc p{font-size:13.5px}
+.pb{display:inline-block;font:500 10px var(--mono);letter-spacing:.06em;padding:2px 8px;border-radius:4px;background:#ddd8ca;color:var(--ink2);margin-left:8px;vertical-align:middle;text-transform:uppercase}
+
+/* OS diagram */
+.os{display:grid;grid-template-columns:1fr;gap:8px;margin-top:18px}
+.os-row{background:var(--card);border:1px solid #ddd8ca;border-radius:8px;padding:12px 18px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.os-row .lbl{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--green2);min-width:120px}
+.os-row p{font-size:13px;line-height:1.45}
+.os-row.hl{border-color:var(--green);background:#164136;color:var(--bg)}
+.os-row.hl .lbl{color:var(--sage)}.os-row.hl p{color:#dfe8e2}
+
+.mt1{margin-top:8px}.mt2{margin-top:16px}.mt3{margin-top:24px}.mt4{margin-top:32px}
+.mb2{margin-bottom:16px}
+
+.cta{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:var(--green);color:var(--bg);font:600 15px var(--sans);border:none;border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none}
+.cta:hover{background:var(--green2);transform:translateY(-1px)}
+
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:18px}
+table.cmp{width:100%;min-width:620px;border-collapse:collapse;font-size:13.5px}
+table.cmp th{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:8px 12px;border-bottom:2px solid #ddd8ca}
+table.cmp td{padding:10px 12px;border-bottom:1px solid #e4dfd2;color:var(--ink2);vertical-align:top;line-height:1.45}
+table.cmp td:first-child{color:var(--ink);font-weight:600}
+table.cmp tr.us td{background:#164136;color:#dfe8e2}
+table.cmp tr.us td:first-child{color:#fff;border-radius:6px 0 0 6px}
+table.cmp tr.us td:last-child{border-radius:0 6px 6px 0}
+
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#c9c3b4;border-radius:3px}
+@media(max-width:680px){.sl{padding:40px 22px 64px}}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="scnt" id="cnt"></div>
+<div class="deck" id="deck"></div>
+<div class="nav">
+  <button class="nb" id="pb" onclick="prev()">&#8249; Back</button>
+  <span class="nh" id="pgnum"></span>
+  <button class="nb" id="nb" onclick="next()">Next &#8250;</button>
+</div>
+
+<script>
+const SLIDES = [
+
+// 1 — Title / Purpose
+{ id:'title', center:true, html:`
+  <div class="brand">V<span class="ti">ı</span>ret</div>
+  <h2 class="mt3" style="font-weight:400;font-size:clamp(1.15rem,2.4vw,1.6rem);max-width:720px">
+    AI for human flour<span class="ti ti-x">ı</span>sh<span class="ti ti-x">ı</span>ng.
+  </h2>
+  <p class="mt3" style="max-width:640px">We help the world's most consequential mission organizations harness AI to deliver <strong>measurable human impact — owned by the people it serves.</strong></p>
+  <p class="sub mt4">Founding round briefing &middot; July 2026</p>
+`},
+
+// 2 — Problem
+{ id:'problem', html:`
+  <p class="kick">The problem</p>
+  <h2>They can buy strategy. They can buy pilots.<br/>They cannot buy results.</h2>
+  <p class="mt3" style="max-width:820px">Foundations, ministries, and global health, agriculture, and education institutions want outcomes from AI — at speed and scale. They have lived the alternative:</p>
+  <div class="g2 mt3">
+    <div class="c c-s"><h3>Strategy that ends at the recommendation</h3><p class="mt1">Consultancies deliver the roadmap, then leave. The build never happens — or goes to a vendor with no stake in the mission.</p></div>
+    <div class="c c-s"><h3>Pilots that die with the grant</h3><p class="mt1">Demos that never survive contact with a real clinic, farm, or ministry — because the knowledge walks out the door when the funding stops.</p></div>
+  </div>
+  <p class="mt3" style="max-width:840px"><strong>What no one sells them:</strong> a partner who builds, deploys, and <strong>sustains</strong> AI inside real operations — without taking ownership of their data, their systems, or their future. The bottleneck is no longer the model. It is product-builder capacity that leaves the client stronger and more independent, not more dependent.</p>
+`},
+
+// 3 — Why now
+{ id:'whynow', html:`
+  <p class="kick">Why now</p>
+  <h2>Two shifts intersect — exactly here.</h2>
+  <div class="g2 mt3">
+    <div class="c c-g"><h3>The moat moved</h3><p class="mt1">Frontier labs are commoditizing models <strong>and</strong> generic agent orchestration — shipping both natively. Value is migrating to the layer that stays hard: <strong>evaluated, context-faithful deployment</strong> into complex, high-stakes institutional realities. That layer gets more valuable as everything beneath it gets cheaper.</p></div>
+    <div class="c c-g"><h3>The ownership wave</h3><p class="mt1">Institutions and governments now demand control of their data, compute, and capability — in-region, in-jurisdiction, inspectable. Every lock-in vendor is swimming against this current. <strong>Viret is built on it.</strong></p></div>
+  </div>
+  <p class="mt3" style="max-width:840px">The window: mission organizations are budgeting for AI transformation <strong>now</strong>, the incumbents structurally cannot serve them, and the firms that can build at this grade do not work in these sectors.</p>
+`},
+
+// 4 — Solution
+{ id:'solution', html:`
+  <p class="kick">The solution</p>
+  <h2>Viret OS — an agentic operating system the client owns.</h2>
+  <p class="mt2" style="max-width:840px">One control plane that runs an organization's AI work across any model, any vendor, and the systems they already have. Ships as owned <strong>Capabilities</strong> — evaluated production workflows with benchmark suite and runbook. <strong>First production deployment inside 90 days.</strong></p>
+  <div class="os">
+    <div class="os-row"><span class="lbl">Your compute</span><p>Runs where the client chooses — on-prem, in-region, or sovereign cloud.</p></div>
+    <div class="os-row"><span class="lbl">Your data</span><p>Owned, governed, in-jurisdiction — kept in human-readable form the client's staff can open, read, and edit.</p></div>
+    <div class="os-row"><span class="lbl">Intelligence</span><p>Open-weight by default; commercial agents and vertical AIs where they are the right tool — swappable, never locked in.</p></div>
+    <div class="os-row hl"><span class="lbl">Agentic harness</span><p>Composes intelligence, backends, and existing systems into the workflows that fit how the organization operates — web, WhatsApp, USSD, voice, offline.</p></div>
+    <div class="os-row"><span class="lbl">Assurance</span><p>Continuous benchmarking against the client's real personas and use cases — proven before deployment, measured after, on the client's own operational record.</p></div>
+  </div>
+  <p class="fn">Human-in-the-loop by design: every deployment ships with an autonomy dial the client sets. Agents propose; designated people approve. Autonomy is a setting, not the pitch.</p>
+`},
+
+// 5 — Market
+{ id:'market', html:`
+  <p class="kick">Market</p>
+  <h2>Impact is the P&amp;L — and the budgets are real.</h2>
+  <div class="g3 mt3">
+    <div style="text-align:center"><div class="m-num">$280B+</div><div class="m-u">annual philanthropic &amp; development spending — $174B DAC development assistance + $110B US foundation giving alone&sup1;</div></div>
+    <div style="text-align:center"><div class="m-num">$200B+</div><div class="m-u">committed to sovereign AI programs across the Gulf and Africa — $100B Project Transcendence, $49B MGX fund, $60B Africa AI Fund&sup2;</div></div>
+    <div style="text-align:center"><div class="m-num">$600B+</div><div class="m-u">projected worldwide AI-services spend by 2028 (Gartner)&sup3;</div></div>
+  </div>
+  <div class="c mt4">
+    <h3>Bottoms-up: the serviceable market</h3>
+    <p class="mt1" style="font-size:13.5px">~300 anchor institutions — the top ~100 foundations (the largest alone pays out <strong>$9B/yr through 2045</strong>&#8308;), priority ministries across ~40 countries in three sectors, and corporate adjacencies with board-level flourishing problems. At <strong>$1–2.5M per Build</strong> plus <strong>$200–500K/yr in Platform &amp; Assurance renewals</strong>, that is <strong>$300–750M in initial Builds and $100M+/yr recurring at scale</strong> — before sector templates compound margins on every repeat deployment.</p>
+  </div>
+  <p class="mt3" style="max-width:860px;font-size:14px">And the pressure is rising: development assistance fell <strong>23% in 2025 — the largest contraction on record</strong>.&sup1; Every remaining dollar must deliver more impact. That is precisely what Viret sells.</p>
+  <p class="fn">&sup1; <a href="https://www.oecd.org/en/data/insights/data-explainers/2026/04/a-historic-decline-in-foreign-aid-preliminary-2025-oda-data.html" target="_blank" rel="noopener">OECD DAC, preliminary 2025 ODA</a> &middot; <a href="https://givingusa.org/giving-usa-2025-u-s-charitable-giving-grew-to-592-50-billion-in-2024-lifted-by-stock-market-gains/" target="_blank" rel="noopener">Giving USA 2025</a> &nbsp;&sup2; <a href="https://mei.edu/report/ai-the-gulf-and-the-us-a-primer/" target="_blank" rel="noopener">Middle East Institute, Gulf AI primer</a> &middot; <a href="https://www.forbes.com/sites/guneyyildiz/2026/07/03/abu-dhabis-49-billion-ai-fund-and-its-sovereign-rivals/" target="_blank" rel="noopener">Forbes: MGX first close, Jul 2026</a> &middot; <a href="https://businessday.ng/technology/article/africas-audacious-60bn-ai-bet-trails-global-counterparts/" target="_blank" rel="noopener">Africa AI Fund, Kigali 2025</a> &nbsp;&sup3; <a href="https://www.gartner.com/en/documents/5710751" target="_blank" rel="noopener">Gartner AI Services Forecast</a> &nbsp;&#8308; <a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/01/historic-annual-budget-to-accelerate-mission" target="_blank" rel="noopener">Gates Foundation, Jan 2026</a></p>
+`},
+
+// 6 — Competition
+{ id:'competition', html:`
+  <p class="kick">Competition</p>
+  <h2>The quadrant nobody occupies.</h2>
+  <p class="mt2" style="max-width:820px">The AI-transformation market splits three ways — and each is structurally unable to serve this sector on the client's terms:</p>
+  <div class="tbl-wrap"><table class="cmp">
+    <tr><th></th><th>Build grade</th><th>Client independence</th><th>Serves mission sector</th></tr>
+    <tr><td>Forward-deployed platform vendors
+      <div class="lgrow">
+        <svg class="lg" viewBox="0 0 1024.2 115" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic"><path d="M250.649,23.3494h37.328V113.094h23.825V23.3494H349.13V1.9061H250.649Z"/><path d="M208.557,79.7376,158.522,1.9061H131.519V113.094h23.032V35.2624l50.035,77.8316h27.002V1.9061H208.557Z"/><path d="M444.434,46.2224H392.017V1.9061H368.191V113.094h23.826V67.6657h52.417V113.094H468.26V1.9061H444.434Z"/><path d="M44.3163,1.9061,0,113.094H24.779l9.0634-23.3495H80.2061L89.268,113.094h24.779L69.7307,1.9061ZM41.8575,69.0953l15.166-39.0746L72.19,69.0953Z"/><path d="M665.698,0c-32.086,0-54.8,23.826-54.8,57.6588,0,33.5152,22.714,57.3412,54.8,57.3412,31.926,0,54.482-23.826,54.482-57.3412C720.18,23.826,697.624,0,665.698,0Zm0,92.7624c-18.744,0-30.18-13.3425-30.18-35.1036,0-22.0787,11.436-35.4212,30.18-35.4212,18.584,0,29.861,13.3425,29.861,35.4212C695.559,79.42,684.282,92.7624,665.698,92.7624Z"/><path d="M998.785,75.7666c-4.13,10.8011-12.39,16.9958-23.668,16.9958-18.743,0-30.179-13.3425-30.179-35.1036,0-22.0787,11.436-35.4212,30.179-35.4212,11.278,0,19.538,6.1947,23.668,16.9958h25.255C1017.85,15.4075,999.261,0,975.117,0c-32.085,0-54.799,23.826-54.799,57.6588C920.318,91.174,943.032,115,975.117,115,999.42,115,1018,99.4337,1024.2,75.7666Z"/><path d="M846.934,1.9061,891.25,113.094h24.302L871.236,1.9061Z"/><path d="M796.74,1.9061H742.417V113.094h23.826V72.7486H796.74c25.256,0,40.663-13.3425,40.663-35.4213S821.996,1.9061,796.74,1.9061Zm-1.112,49.3991H766.243V23.3494h29.385c11.755,0,17.949,4.7652,17.949,13.9779S807.383,51.3052,795.628,51.3052Z"/><path d="M592.631,35.7389c0-20.9668-15.407-33.8328-40.663-33.8328H497.645V113.094h23.826V69.5718h26.525l23.827,43.5222h26.368L571.807,66.2568C585.05,61.166,592.631,50.4459,592.631,35.7389Zm-71.16-12.39h29.385c11.754,0,17.949,4.2887,17.949,12.39s-6.195,12.39-17.949,12.39H521.471Z"/></svg>
+        <svg class="lg" viewBox="0 0 1180 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenAI"><path d="m367.44 153.84c0 52.32 33.6 88.8 80.16 88.8s80.16-36.48 80.16-88.8-33.6-88.8-80.16-88.8-80.16 36.48-80.16 88.8zm129.6 0c0 37.44-20.4 61.68-49.44 61.68s-49.44-24.24-49.44-61.68 20.4-61.68 49.44-61.68 49.44 24.24 49.44 61.68z"/><path d="m614.27 242.64c35.28 0 55.44-29.76 55.44-65.52s-20.16-65.52-55.44-65.52c-16.32 0-28.32 6.48-36.24 15.84v-13.44h-28.8v169.2h28.8v-56.4c7.92 9.36 19.92 15.84 36.24 15.84zm-36.96-69.12c0-23.76 13.44-36.72 31.2-36.72 20.88 0 32.16 16.32 32.16 40.32s-11.28 40.32-32.16 40.32c-17.76 0-31.2-13.2-31.2-36.48z"/><path d="m747.65 242.64c25.2 0 45.12-13.2 54-35.28l-24.72-9.36c-3.84 12.96-15.12 20.16-29.28 20.16-18.48 0-31.44-13.2-33.6-34.8h88.32v-9.6c0-34.56-19.44-62.16-55.92-62.16s-60 28.56-60 65.52c0 38.88 25.2 65.52 61.2 65.52zm-1.44-106.8c18.24 0 26.88 12 27.12 25.92h-57.84c4.32-17.04 15.84-25.92 30.72-25.92z"/><path d="m823.98 240h28.8v-73.92c0-18 13.2-27.6 26.16-27.6 15.84 0 22.08 11.28 22.08 26.88v74.64h28.8v-83.04c0-27.12-15.84-45.36-42.24-45.36-16.32 0-27.6 7.44-34.8 15.84v-13.44h-28.8z"/><path d="m1014.17 67.68-65.28 172.32h30.48l14.64-39.36h74.4l14.88 39.36h30.96l-65.28-172.32zm16.8 34.08 27.36 72h-54.24z"/><path d="m1163.69 68.18h-30.72v172.32h30.72z"/><path d="m297.06 130.97c7.26-21.79 4.76-45.66-6.85-65.48-17.46-30.4-52.56-46.04-86.84-38.68-15.25-17.18-37.16-26.95-60.13-26.81-35.04-.08-66.13 22.48-76.91 55.82-22.51 4.61-41.94 18.7-53.31 38.67-17.59 30.32-13.58 68.54 9.92 94.54-7.26 21.79-4.76 45.66 6.85 65.48 17.46 30.4 52.56 46.04 86.84 38.68 15.24 17.18 37.16 26.95 60.13 26.8 35.06.09 66.16-22.49 76.94-55.86 22.51-4.61 41.94-18.7 53.31-38.67 17.57-30.32 13.55-68.51-9.94-94.51zm-120.28 168.11c-14.03.02-27.62-4.89-38.39-13.88.49-.26 1.34-.73 1.89-1.07l63.72-36.8c3.26-1.85 5.26-5.32 5.24-9.07v-89.83l26.93 15.55c.29.14.48.42.52.74v74.39c-.04 33.08-26.83 59.9-59.91 59.97zm-128.84-55.03c-7.03-12.14-9.56-26.37-7.15-40.18.47.28 1.3.79 1.89 1.13l63.72 36.8c3.23 1.89 7.23 1.89 10.47 0l77.79-44.92v31.1c.02.32-.13.63-.38.83l-64.41 37.19c-28.69 16.52-65.33 6.7-81.92-21.95zm-16.77-139.09c7-12.16 18.05-21.46 31.21-26.29 0 .55-.03 1.52-.03 2.2v73.61c-.02 3.74 1.98 7.21 5.23 9.06l77.79 44.91-26.93 15.55c-.27.18-.61.21-.91.08l-64.42-37.22c-28.63-16.58-38.45-53.21-21.95-81.89zm221.26 51.49-77.79-44.92 26.93-15.54c.27-.18.61-.21.91-.08l64.42 37.19c28.68 16.57 38.51 53.26 21.94 81.94-7.01 12.14-18.05 21.44-31.2 26.28v-75.81c.03-3.74-1.96-7.2-5.2-9.06zm26.8-40.34c-.47-.29-1.3-.79-1.89-1.13l-63.72-36.8c-3.23-1.89-7.23-1.89-10.47 0l-77.79 44.92v-31.1c-.02-.32.13-.63.38-.83l64.41-37.16c28.69-16.55 65.37-6.7 81.91 22 6.99 12.12 9.52 26.31 7.15 40.1zm-168.51 55.43-26.94-15.55c-.29-.14-.48-.42-.52-.74v-74.39c.02-33.12 26.89-59.96 60.01-59.94 14.01 0 27.57 4.92 38.34 13.88-.49.26-1.33.73-1.89 1.07l-63.72 36.8c-3.26 1.85-5.26 5.31-5.24 9.06l-.04 89.79zm14.63-31.54 34.65-20.01 34.65 20v40.01l-34.65 20-34.65-20z"/></svg>
+      </div>
+    </td><td>Frontier</td><td>Lock-in required by their economics</td><td>No — not a focus</td></tr>
+    <tr><td>Scaled services firms
+      <div class="lgrow">
+        <svg class="lg" viewBox="0 0 216 56.1" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slalom"><g><path d="M39.2,50.7c0,2.4,1.9,4.3,4.3,4.3h6.3V0H39.2V50.7z"/><path d="M82.4,19.9c-2.6-3.2-6.4-5.4-11.8-5.4c-10.9,0-19.1,8.9-19.1,20.8s8.2,20.8,19.1,20.8c5.4,0,9.2-2.2,11.8-5.4 v0.1c0,2.4,1.9,4.3,4.3,4.3h6.1V15.6H82.4V19.9z M72.6,46.2c-6.2,0-10.2-4.8-10.2-10.9c0-6,4-10.9,10.2-10.9 c6.1,0,10.2,4.6,10.2,10.9C82.8,41.5,78.7,46.2,72.6,46.2z"/><path d="M95.6,50.7c0,2.4,1.9,4.3,4.3,4.3h6.3V0H95.6V50.7z"/><path d="M129.2,14.5c-12.3,0-21.3,8.9-21.3,20.8s9,20.8,21.3,20.8s21.4-8.9,21.4-20.8 C150.6,23.4,141.5,14.5,129.2,14.5z M129.2,46.2c-6,0-10.5-4.5-10.5-10.9s4.5-10.9,10.5-10.9s10.5,4.5,10.5,10.9 S135.2,46.2,129.2,46.2z"/><path d="M200.4,14.5c-5.2,0-10.3,1.8-13.4,6.8c-2.6-4.2-7.3-6.8-13-6.8c-4.5,0-8.8,1.5-11.6,5.7v-4.6h-10.3v35.2 c0,2.4,1.9,4.3,4.3,4.3h6.3V33.4c0-5.9,3.8-8.9,8.4-8.9c4.8,0,7.7,3.1,7.7,8.8v17.4c0,2.4,1.9,4.3,4.3,4.3h6.3V33.4 c0-5.9,3.8-8.9,8.4-8.9c4.8,0,7.7,3.1,7.7,8.8v17.4c0,2.4,1.9,4.3,4.3,4.3h6.3V29.9C216,20.7,209.7,14.5,200.4,14.5z"/><path d="M22.7,31l-4.8-0.6c-3.6-0.6-5.9-1.2-5.8-3.5c0-2.2,1.9-3.6,5.9-3.5c3.9,0.1,7.9,1.2,11,2.4 c2.1,0.8,4.6-0.1,5.5-2.2l2-4.3c-5.2-2.7-11.2-4.5-18.3-4.6c-9.3-0.3-17,4-17.2,12.2c-0.1,6.4,2.8,10.8,14.3,12.6l2.3,0.3 c5.1,0.7,8.9,0.9,8.9,3.7c-0.1,2.9-3.1,3.9-9,3.8c-6-0.1-11.4-2.9-13.9-4.3L0,51.2c5.5,3.3,12.1,4.9,17.5,5 c13.3,0.2,20-4.4,20.1-12.7C37.7,36.1,31.3,32,22.7,31z"/></g></svg>
+      </div>
+    </td><td>Competes on cost, not craft</td><td>Time &amp; materials dependency</td><td>Sometimes</td></tr>
+    <tr><td>Mission-sector natives</td><td>Below frontier grade</td><td>Yes — shared values</td><td>Yes</td></tr>
+    <tr class="us"><td>V<span class="ti ti-s">ı</span>ret</td><td>Frontier, forward-deployed</td><td>Structural — we embed to leave</td><td>Built for it</td></tr>
+  </table></div>
+  <p class="mt3" style="max-width:840px"><strong>What's hard to copy is the deployment, not the orchestration.</strong> Systems benchmarked against the client's real personas, grafted into what already exists, engineered to keep delivering where infrastructure and data are thin. That is the work the labs will not do.</p>
+`},
+
+// 7 — Business model
+{ id:'model', html:`
+  <p class="kick">Business model</p>
+  <h2>Client-funded by design. Renewed by choice.</h2>
+  <div class="g4 mt3">
+    <div class="c c-g"><h3>Build</h3><p class="mt1" style="font-size:13px">Fixed-scope, outcome-priced deployments. Cash-positive — the wedge.</p><p class="mt2" style="font-size:12.5px"><strong>$1–2.5M</strong> per engagement<br/>~40% mobilization on signature<br/>~30–40% gross margin</p></div>
+    <div class="c"><h3>Platform</h3><p class="mt1" style="font-size:13px">License the maintained harness, connectors, and sector templates. Clients can fork — the exit right is real.</p><p class="mt2" style="font-size:12.5px"><strong>$150–300K/yr</strong> license<br/>~80% gross margin<br/>template reuse compounds</p></div>
+    <div class="c"><h3>Assure</h3><p class="mt1" style="font-size:13px">Continuous benchmarking, safety, and impact measurement. Renewable because we are independent — a vendor who sells you the model can't credibly grade it.</p><p class="mt2" style="font-size:12.5px"><strong>$100–250K/yr</strong> retainer<br/>~70% gross margin<br/>renews on independence</p></div>
+    <div class="c"><h3>Enable</h3><p class="mt1" style="font-size:13px">Apprenticeship retainers that transfer capability — every team we train carries the platform onward.</p><p class="mt2" style="font-size:12.5px"><strong>$100–200K/yr</strong> retainer<br/>~50% gross margin<br/>seeds the next institution</p></div>
+  </div>
+  <div class="c c-g mt2">
+    <p style="font-size:13.5px"><strong>Representative client:</strong> ~$1.5M Build in year one &rarr; <strong>$400–600K/yr recurring</strong> (Platform + Assure + Enable) at blended ~70% gross margin — <strong>~$3M of revenue over three years</strong> from one institution, with the recurring layer renewing by choice.</p>
+  </div>
+  <p class="mt3" style="max-width:860px">Each deployment strengthens the sector templates that make the next one <strong>faster and higher-margin</strong> — build the economic-planning capability once, then deploy it to every planning ministry. The quality signal: <strong>voluntary net revenue retention</strong> — clients who could leave freely, and instead expand.</p>
+`},
+
+// 8 — Go-to-market / pipeline
+{ id:'gtm', html:`
+  <p class="kick">Go to market</p>
+  <h2>Warm pipeline, two contracting paths.</h2>
+  <div class="mt3">
+    <div class="ri"><div class="rn">1</div><div class="rc"><h3>Global-health funder <span class="pb">Scoping</span></h3><p>An agentic harness unifying scattered trial, regulatory, and manufacturing expertise — earlier, evidence-based go/no-go calls on which products to back.</p></div></div>
+    <div class="ri"><div class="rn">2</div><div class="rc"><h3>Ministries of agriculture <span class="pb">Scoping</span></h3><p>Democratizing access to economywide (CGE) modelling to set smarter food and agriculture policy — an <a href="https://cgspace.cgiar.org/server/api/core/bitstreams/8d0bc66e-cb84-4f06-be87-4d7abd0b5fda/content" target="_blank" rel="noopener">expert-only model</a> turned agentic service, so ministries ask in plain language how an investment plays out for growth, jobs, poverty, and diets. Answers in hours, not months.</p></div></div>
+    <div class="ri"><div class="rn">3</div><div class="rc"><h3>Leading family foundation <span class="pb">Qualified</span></h3><p>A living source of truth from fragmented grant and program data — institutional memory that appreciates instead of decaying.</p></div></div>
+    <div class="ri"><div class="rn">4</div><div class="rc"><h3>Global consumer-goods company <span class="pb">Qualified</span></h3><p>An agentic system across hundreds of thousands of smallholder suppliers — supply security and regulatory compliance, with rising farmer incomes.</p></div></div>
+  </div>
+  <p class="mt3" style="max-width:860px">Two paths to contract: <strong>direct</strong> as a technology vendor, and <strong>via implementer</strong> — faster to first proof. Deal flow is seeded by an advisory relationship with a leading global consultancy whose build arms structurally cannot serve these clients.</p>
+`},
+
+// 9 — Team
+{ id:'team', html:`
+  <p class="kick">Team</p>
+  <h2>Operators who have built at scale.</h2>
+  <div class="c c-g mt3">
+    <h3>Dan Grimm — Co-founder</h3>
+    <p class="mt1" style="font-size:13.5px">Two decades leading strategy, product, and growth across 20+ countries — AT&amp;T, Amazon, RealNetworks, and startups he co-founded. Led a 200-person new-product organization at AT&amp;T (19 products, 14 patents); scaled a computer-vision business to 130 partners across 20 countries; ran 30+ growth and national-development engagements across 15 countries at Monitor Group. Advises a leading global consultancy on AI for global health and development.</p>
+  </div>
+  <div class="g2 mt2">
+    <div class="c c-g"><h3 style="font-size:14px">Co-founder, forward-deployed engineering <span class="pb">In discussion</span></h3><p class="mt1" style="font-size:12.5px">Helped pioneer the forward-deployed model at the defining FDE company; founded and ran its Middle East office for five years.</p></div>
+    <div class="c"><h3 style="font-size:14px">Head of engineering <span class="pb">Target hire</span></h3><p class="mt1" style="font-size:12.5px">Twenty years shipping consumer products at scale — early engineer at a company scaled 350K &rarr; 60M users; stood up a 0&rarr;1 mobile lab at a top-tier product company.</p></div>
+    <div class="c"><h3 style="font-size:14px">Partner, Africa &amp; venture building <span class="pb">Target hire</span></h3><p class="mt1" style="font-size:12.5px">MIT PhD and former strategy-consulting principal turned pan-African venture builder; COO of a retail-distribution platform serving 1M+ merchants across five countries. Based in Nairobi.</p></div>
+    <div class="c"><h3 style="font-size:14px">Partner, enterprise &amp; Middle East <span class="pb">Target hire</span></h3><p class="mt1" style="font-size:12.5px">Eleven years to GM at a global software leader; founded an enterprise-software venture acquired by a Fortune 500. Operator across the US, Europe, the Gulf, and South Asia.</p></div>
+  </div>
+  <p class="fn">Named with consent, as roles close. Forward-deployed delivery in Lagos, Nairobi, Addis Ababa, and Abu Dhabi — where the work happens, not a remote delivery center.</p>
+`},
+
+// 10 — Ask / Vision
+{ id:'ask', html:`
+  <p class="kick">The ask</p>
+  <h2>Client-funded by design.<br/>A founding round to bridge to it.</h2>
+  <p class="mt3" style="max-width:840px">Builds are outcome-priced and cash-positive from engagement one. We are raising a <strong>$500K founding round (SAFE)</strong> to bridge to the first two deployments and fund the platform layer — alongside conversations with catalytic funders for the open sector templates.</p>
+  <div class="g3 mt3">
+    <div class="c"><h3 style="font-size:14px">Founding team</h3><p class="mt1" style="font-size:13px">Close the first two senior roles alongside engagement one.</p></div>
+    <div class="c"><h3 style="font-size:14px">Lighthouse deployments</h3><p class="mt1" style="font-size:13px">Two production systems live, running, and measured — proof the model works.</p></div>
+    <div class="c"><h3 style="font-size:14px">Platform v1</h3><p class="mt1" style="font-size:13px">The harness and first sector templates that make deployment two cheaper than deployment one.</p></div>
+  </div>
+  <p class="mt4" style="max-width:860px"><strong>Every engagement ends the same way:</strong> the system running, the client's people running it, and more of what matters — health, learning, livelihoods — measurably within people's reach. <span class="acc" style="font-family:var(--serif);font-style:italic">That is what it means for it to flourish.</span></p>
+  <a class="cta mt4" id="contact-cta" data-u="olleh" data-d="ia.teriv" href="#">Start a conversation &rarr;</a>
+`},
+
+];
+
+const N = SLIDES.length;
+let cur = 0, tx0 = 0, ty0 = 0;
+
+function buildDeck(){
+  const dk = document.getElementById('deck');
+  SLIDES.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className = 'sl'; d.dataset.i = i;
+    d.innerHTML = '<div class="sl-c'+(s.center?' sl-center':'')+'">'+s.html+'</div>';
+    dk.appendChild(d);
+  });
+  const p = document.getElementById('prog');
+  for(let i=0;i<N;i++){const d=document.createElement('div');d.className='pdot';d.onclick=()=>go(i);p.appendChild(d);}
+}
+function go(i){
+  cur = Math.max(0,Math.min(N-1,i));
+  document.querySelectorAll('.sl').forEach((s,j)=>{s.classList.remove('on','was');if(j<cur)s.classList.add('was');if(j===cur)s.classList.add('on');});
+  document.querySelectorAll('.pdot').forEach((d,j)=>{d.classList.toggle('on',j===cur);d.classList.toggle('was',j<cur);});
+  document.getElementById('cnt').textContent = (cur+1)+'/'+N;
+  document.getElementById('pgnum').innerHTML = cur===0 ? '&larr; &rarr; or swipe' : (cur+1)+' / '+N;
+  document.getElementById('pb').disabled = cur===0;
+  const nb = document.getElementById('nb'); nb.disabled = cur===N-1; nb.classList.toggle('hl',cur<N-1);
+}
+function next(){if(cur<N-1)go(cur+1)} function prev(){if(cur>0)go(cur-1)}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}
+  if(e.key==='ArrowLeft'){e.preventDefault();prev();}
+});
+let swipeOk = true;
+document.addEventListener('touchstart',e=>{tx0=e.changedTouches[0].screenX;ty0=e.changedTouches[0].screenY;swipeOk=!e.target.closest('.tbl-wrap');},{passive:true});
+document.addEventListener('touchend',e=>{if(!swipeOk)return;const dx=e.changedTouches[0].screenX-tx0,dy=e.changedTouches[0].screenY-ty0;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){dx<0?next():prev();}},{passive:true});
+
+buildDeck(); go(0);
+
+// Assemble the contact email at runtime so it never appears in static HTML.
+(function(){
+  var a = document.getElementById('contact-cta');
+  if(!a) return;
+  var rev = function(s){return s.split('').reverse().join('');};
+  a.setAttribute('href','mailto:'+rev(a.getAttribute('data-u'))+'@'+rev(a.getAttribute('data-d')));
+})();
+</script>
+</body>
+</html>
