@@ -30,6 +30,9 @@
   img,svg{max-width:100%}
   :focus-visible{outline:2px solid #164136;outline-offset:3px}
 
+  .osd-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .osd-inner{min-width:1060px}
+
   /* ---- Responsive ---- */
   @media (max-width:920px){
     .hero{grid-template-columns:1fr!important;gap:40px!important;align-items:start!important}
@@ -48,15 +51,8 @@
     .sec-h{font-size:30px!important}
     .cards4{grid-template-columns:1fr!important}
     .steps5{grid-template-columns:1fr!important}
-    /* Stack the Viret OS diagram into a single readable column */
-    .os-diagram{grid-template-columns:1fr!important;gap:14px!important}
-    .os-diagram>div:nth-child(2),
-    .os-diagram>div:nth-child(4),
-    .os-diagram>div:nth-child(6){display:none!important}
-    .os-diagram>div:nth-child(5){padding:12px!important}
-    .os-diagram .assurance-label{writing-mode:horizontal-tb!important;transform:none!important}
-    .os-sov{grid-template-columns:1fr!important}
-    .os-sov-divider{display:none!important}
+    /* Viret OS diagram scrolls horizontally on small screens */
+    .osd-inner{padding:24px!important}
   }
 </style>
 </head>
@@ -127,51 +123,170 @@
       <p style="font-size:17px;line-height:1.7;color:rgba(236,233,224,.75);max-width:640px;margin:0 0 56px">An agentic operating system that delivers outcomes you own: one control plane that runs your AI work across any model, any vendor, and the systems you already have — built to keep producing after we leave.</p>
 
       <!-- diagram -->
-      <figure style="margin:0;border:1px solid rgba(236,233,224,.25);padding:44px 44px 36px" role="img" aria-label="Viret OS diagram: intelligence slots — open-weight models, Claude and managed agents, vertical AIs, custom backends — plug into the agentic harness, which sits on your compute and your data, passes through assurance, and reaches your people at the autonomy level you set, over web, WhatsApp, USSD, voice, or offline channels.">
-        <div class="os-diagram" style="display:grid;grid-template-columns:220px 36px 1fr 36px 96px 36px 220px;align-items:stretch">
-          <div style="display:flex;flex-direction:column;gap:10px">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(236,233,224,.5);margin-bottom:2px">INTELLIGENCE</div>
-            <div style="border:1px solid rgba(236,233,224,.35);padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px">open-weight models</div>
-            <div style="border:1px solid rgba(236,233,224,.35);padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px">Claude / managed agents</div>
-            <div style="border:1px solid rgba(236,233,224,.35);padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px">vertical AIs (Qure.ai, FarmerChat, UlizaLlama)</div>
-            <div style="border:1px solid rgba(236,233,224,.35);padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px">custom backends</div>
-            <div style="font-size:12px;color:rgba(236,233,224,.5);margin-top:2px">swappable · never locked in</div>
-          </div>
-          <div style="display:flex;flex-direction:column;justify-content:space-between;padding:34px 0 44px"><div style="height:1px;background:rgba(236,233,224,.35)"></div><div style="height:1px;background:rgba(236,233,224,.35)"></div><div style="height:1px;background:rgba(236,233,224,.35)"></div><div style="height:1px;background:rgba(236,233,224,.35)"></div></div>
-          <div style="background:#2a6b57;color:#f6f3ec;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:40px 28px;text-align:center">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.04em">The agentic harness</div>
-            <div style="font-size:13px;color:rgba(246,243,236,.75)">composes everything into how you operate</div>
-          </div>
-          <div style="display:flex;align-items:center"><div style="height:1px;width:100%;background:rgba(236,233,224,.35)"></div></div>
-          <div style="border:1px solid rgba(236,233,224,.55);display:flex;justify-content:center;align-items:center;padding:16px 10px">
-            <div class="assurance-label" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;writing-mode:vertical-rl;transform:rotate(180deg)">ASSURANCE</div>
-          </div>
-          <div style="display:flex;align-items:center"><div style="height:1px;width:100%;background:rgba(236,233,224,.35)"></div></div>
-          <div style="display:flex;flex-direction:column;justify-content:center;gap:14px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:12px;height:12px;border-radius:50%;border:1.5px solid #ece9e0"></div><div style="width:18px;height:12px;border:1.5px solid #ece9e0;border-bottom:none;border-radius:9px 9px 0 0"></div></div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:13px">your people</div>
-            </div>
+      <figure style="margin:0" role="img" aria-label="Viret OS diagram: one team — MBB partner rigor, Palantir FDE build — compiles strategy to code with no RFPs, vendor selection, system integrators, or change-management program in between. Viret Strategy (the decision) flows into your capabilities — field operations, donor reporting, customer service, marketing and fundraising, and the next workflow you name — each an evaluated production workflow measured in impact, with an autonomy setting from human-led to agent-led and continuous assurance. Below, Viret OS (the delivery) carries your institutional memory across every agent, on foundations you own: your compute, your data, intelligence spanning the agent spectrum from chat agents to custom-built orchestration, and the software you already run.">
+        <div class="osd-wrap"><div class="osd-inner" style="border:1px solid rgba(236,233,224,.25);padding:44px 44px 38px">
+
+        <div style="display:grid;grid-template-columns:250px 1fr;gap:0 32px;align-items:stretch">
+          <div style="position:relative;border-left:2px solid #7fb8a4;padding:20px 0 20px 22px;display:flex;flex-direction:column;justify-content:center;gap:14px">
+            <div style="position:absolute;left:0;top:0;width:14px;height:2px;background:#7fb8a4"></div>
+            <div style="position:absolute;left:0;bottom:0;width:14px;height:2px;background:#7fb8a4"></div>
             <div>
-              <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:14px 4px 8px">
-                <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                <div style="position:absolute;left:50%;top:-6px;margin-left:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
-                <div style="position:absolute;right:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#7fb8a4;margin-bottom:8px">ONE TEAM</div>
+              <div style="font-family:'Source Serif 4',serif;font-size:19px;line-height:1.35;color:#f6f3ec">MBB partner rigor.<br>Palantir FDE build.</div>
+              <div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.6);margin-top:8px">strategy compiles to code — nothing in between:</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">RFP + procurement</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">vendor selection</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">system integrators</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">change-management program</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column">
+            <div style="background:#164136;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:15px 20px">
+              <div style="display:flex;align-items:baseline;gap:16px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.1em;color:#f6f3ec;white-space:nowrap">VIRET STRATEGY</div>
+                <div style="font-size:13px;color:rgba(246,243,236,.75)">the decision — what your institution must achieve, and which workflow delivers it</div>
               </div>
-              <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(236,233,224,.65)"><span>draft</span><span style="color:#7fb8a4;font-weight:500">supervised</span><span>automated</span></div>
-              <div style="font-size:12px;color:rgba(236,233,224,.5);margin-top:8px">autonomy is a setting · web · WhatsApp · USSD · voice · offline</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7fb8a4;white-space:nowrap">MBB-PARTNER RIGOR</div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;align-items:center;padding:3px 0">
+              <div style="width:2px;height:16px;background:#7fb8a4"></div>
+              <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #7fb8a4"></div>
+            </div>
+
+            <div style="border:1px solid rgba(236,233,224,.35);padding:22px 26px 18px">
+              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;border-bottom:1px solid rgba(236,233,224,.35);padding-bottom:10px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:#f6f3ec">YOUR CAPABILITIES</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(236,233,224,.5)">MEASURED IN IMPACT</div>
+                <div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(236,233,224,.5)">AUTONOMY</div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(236,233,224,.45);margin-top:4px"><span>human-led</span><span style="color:rgba(236,233,224,.3)">→</span><span>agent-led</span></div>
+                </div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(236,233,224,.5);text-align:center">ASSURANCE</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
+                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Field operations</div>
+                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">field teams routed, briefed, resupplied — more visits per worker</div>
+                <div>
+                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
+                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                    <div style="position:absolute;left:50%;top:-6px;margin-left:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
+                    <div style="position:absolute;right:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
+                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Donor reporting</div>
+                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">every funder reported on time — staff-days returned to programs</div>
+                <div>
+                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
+                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                    <div style="position:absolute;left:50%;top:-4px;margin-left:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                    <div style="position:absolute;right:0;top:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
+                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Customer service</div>
+                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">every question answered in-language, any hour — resolution in hours, not weeks</div>
+                <div>
+                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
+                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                    <div style="position:absolute;left:50%;top:-4px;margin-left:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                    <div style="position:absolute;right:0;top:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
+                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Marketing / Fundraising</div>
+                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">more qualified prospects — more dollars reaching the mission</div>
+                <div>
+                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
+                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                    <div style="position:absolute;left:50%;top:-6px;margin-left:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
+                    <div style="position:absolute;right:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:13px 0 3px">
+                <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;color:rgba(236,233,224,.55)">+ the next workflow you name</div>
+                <div style="font-size:11.5px;color:rgba(236,233,224,.5)">each line: an evaluated production workflow — benchmark suite + runbook · autonomy set per capability</div>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:center;padding:3px 0"><div style="width:1px;height:18px;background:rgba(236,233,224,.35)"></div></div>
+
+            <div style="background:#164136">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:15px 20px">
+                <div style="display:flex;align-items:baseline;gap:16px">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.1em;color:#f6f3ec;white-space:nowrap">VIRET OS</div>
+                  <div style="font-size:13px;color:rgba(246,243,236,.75)">the delivery — one sovereign harness composing the foundations into each capability</div>
+                </div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7fb8a4;white-space:nowrap">PALANTIR-FDE BUILD</div>
+              </div>
+              <div style="border-top:1px solid rgba(246,243,236,.18);display:flex;justify-content:space-between;align-items:center;gap:24px;padding:11px 20px">
+                <div style="display:flex;align-items:baseline;gap:16px">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#7fb8a4;white-space:nowrap">YOUR MEMORY</div>
+                  <div style="font-size:12.5px;color:rgba(246,243,236,.7)">your institution's knowledge, carried across every agent and capability — same context, standards, history · swap agents anytime</div>
+                </div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(246,243,236,.55);white-space:nowrap">assured · evaluated</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="os-sov" style="display:grid;grid-template-columns:220px 36px 1fr;margin-top:14px">
-          <div style="font-size:13px;font-weight:600;align-self:center">Yours by default.</div>
-          <div class="os-sov-divider" style="display:flex;justify-content:center"><div style="width:1px;background:rgba(236,233,224,.35)"></div></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div style="border:1px solid rgba(236,233,224,.35);padding:14px 16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:4px">Your compute</div><div style="font-size:12px;color:rgba(236,233,224,.55)">runs where you choose — on-prem, in-region, or sovereign cloud</div></div>
-            <div style="border:1px solid rgba(236,233,224,.35);padding:14px 16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:4px">Your data</div><div style="font-size:12px;color:rgba(236,233,224,.55)">owned and governed by you, in-jurisdiction, in files your staff can read</div></div>
+
+        <div style="display:grid;grid-template-columns:250px 1fr;gap:0 32px">
+          <div></div>
+          <div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0 12px;padding-top:2px">
+              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
+              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
+              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
+              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:stretch">
+              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Your compute</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">runs where you choose — on-prem, in-region, or sovereign cloud</div></div>
+              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Your data</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">owned and governed by you, in-jurisdiction, in files your staff can read</div></div>
+              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Intelligence</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">spans your agents across the agent spectrum</div></div>
+              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Your software</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">the systems you already run, wired in — not replaced. ERP · CRM · EMR · M&amp;E</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0 12px">
+              <div></div><div></div>
+              <div style="display:flex;justify-content:center"><div style="width:1px;height:24px;background:rgba(236,233,224,.35)"></div></div>
+              <div></div>
+            </div>
+
+            <div style="border:1px solid rgba(236,233,224,.35);padding:20px 22px 18px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:rgba(236,233,224,.85)">Viret OS integrates across the agent spectrum</div>
+                <div style="font-size:12px;color:rgba(236,233,224,.55)"><br></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-right:7px solid rgba(236,233,224,.6)"></div>
+                <div style="font-size:11.5px;color:rgba(236,233,224,.6);white-space:nowrap">human-initiated · simple, independent action</div>
+                <div style="flex:1;height:1px;background:rgba(236,233,224,.35)"></div>
+                <div style="font-size:11.5px;color:rgba(236,233,224,.6);white-space:nowrap">high-complexity · long-running · multi-agent orchestration</div>
+                <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid rgba(236,233,224,.6)"></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">CHAT AGENTS</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">a person asks; the model answers or takes one step</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">ChatGPT · Claude · Gemini (when they invoke →)</div></div>
+                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">CONFIGURED AGENTS</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">off-the-shelf agents tuned with your instructions and files</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">Custom GPTs · Claude Skills · Cowork</div></div>
+                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">BOUGHT / ASSEMBLED</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">purpose-built products, or workflows assembled from blocks</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">Granola · Harvey · Notion AI · Lindy · n8n · Zapier Agents</div></div>
+                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">MANAGED-BUILT</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">agents built on a lab's managed runtime</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">Anthropic Managed Agents · OpenAI Assistants · Bedrock AgentCore</div></div>
+                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">CUSTOM-BUILT</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">full custom front- and back-end, orchestrated end to end</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">LangGraph · AG2 · CrewAI</div></div>
+              </div>
+            </div>
           </div>
         </div>
-        <figcaption style="font-size:12.5px;color:rgba(236,233,224,.5);margin-top:26px">Each engagement ships one or more <span style="color:rgba(236,233,224,.8)">Capabilities</span> — an evaluated, production workflow with its benchmark suite and runbook: the concrete unit you buy, own, and extend.</figcaption>
+        </div></div>
       </figure>
 
       <!-- how it works in practice -->
