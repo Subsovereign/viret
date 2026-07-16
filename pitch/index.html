@@ -107,6 +107,8 @@ tr.us .lg{color:#dfe8e2}
 .osd-cap-name{font-family:'Source Serif 4',serif;font-size:clamp(21px,2.4vw,26px);line-height:1.2;color:var(--osd-ink)}
 .osd-cap-impact{font-size:12.5px;line-height:1.55;color:var(--osd-ink2)}
 .osd-cap-ctl{display:contents}
+.osd-spec-cell{align-self:center;min-width:0}
+.osd-spec-lab{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--osd-ink3);margin-top:7px;line-height:1.4}
 .osd-spec{position:relative;height:13px;align-self:center}
 .osd-spec::before{content:"";position:absolute;left:2px;right:2px;top:6px;height:1px;background:var(--osd-line)}
 .osd-sdot{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--osd-dot-border);background:var(--osd-dot-bg);transform:translateY(-50%)}
@@ -153,7 +155,7 @@ tr.us .lg{color:#dfe8e2}
   .osd-cap{display:block;padding:16px 0}
   .osd-cap-impact{margin-top:4px}
   .osd-cap-ctl{display:flex;align-items:center;gap:18px;margin-top:12px}
-  .osd-spec{flex:0 0 140px;width:140px}
+  .osd-spec-cell{flex:0 0 150px;width:150px}
   .osd-tick,.osd-ticks{display:none}
   .osd-found{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:18px}
   .osd-scards{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -282,15 +284,15 @@ const SLIDES = [
   <aside class="osd-bracket">
     <div>
       <div class="osd-bracket-kick">ONE TEAM</div>
-      <div class="osd-bracket-title">MBB partner rigor.<br>Palantir FDE build.</div>
+      <div class="osd-bracket-title">Partner-level strategy.<br>Embedded engineers who build.</div>
       <div class="osd-bracket-note">strategy compiles to code — nothing in between:</div>
     </div>
     <div class="osd-struck">
-      <div>RFP + procurement</div>
-      <div>vendor selection</div>
-      <div>system integrators</div>
-      <div>change-management program</div>
-    </div>
+            <div>multi-vendor RFP cycles</div>
+            <div>system-integrator markups</div>
+            <div>year-long build clocks</div>
+          </div>
+          <div class="osd-bracket-note osd-adopt">and adoption is built in — your people build alongside ours from day one</div>
   </aside>
 
   <div class="osd-flow">
@@ -300,7 +302,7 @@ const SLIDES = [
           <span class="osd-band-name">VIRET STRATEGY</span>
           <span class="osd-band-desc">the decision — what your institution must achieve, and which workflow delivers it</span>
         </div>
-        <span class="osd-band-tag">MBB-PARTNER RIGOR</span>
+        <span class="osd-band-tag">PARTNER-LED</span>
       </div>
     </div>
 
@@ -320,7 +322,7 @@ const SLIDES = [
         <div class="osd-cap-name">Field operations</div>
         <div class="osd-cap-impact">field teams routed, briefed, resupplied — more visits per worker</div>
         <div class="osd-cap-ctl">
-          <div class="osd-spec osd-spec-mid" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-spec-cell"><div class="osd-spec osd-spec-mid" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div><div class="osd-spec-lab">supervised</div></div>
           <div class="osd-check">✓</div>
         </div>
       </div>
@@ -328,15 +330,15 @@ const SLIDES = [
         <div class="osd-cap-name">Donor reporting</div>
         <div class="osd-cap-impact">every funder reported on time — staff-days returned to programs</div>
         <div class="osd-cap-ctl">
-          <div class="osd-spec osd-spec-end" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-spec-cell"><div class="osd-spec osd-spec-mid" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div><div class="osd-spec-lab">supervised</div></div>
           <div class="osd-check">✓</div>
         </div>
       </div>
       <div class="osd-cap">
-        <div class="osd-cap-name">Customer service</div>
+        <div class="osd-cap-name">Constituent support</div>
         <div class="osd-cap-impact">every question answered in-language, any hour — resolution in hours, not weeks</div>
         <div class="osd-cap-ctl">
-          <div class="osd-spec osd-spec-end" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-spec-cell"><div class="osd-spec osd-spec-mid" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div><div class="osd-spec-lab">supervised</div></div>
           <div class="osd-check">✓</div>
         </div>
       </div>
@@ -344,13 +346,13 @@ const SLIDES = [
         <div class="osd-cap-name">Marketing / Fundraising</div>
         <div class="osd-cap-impact">more qualified prospects — more dollars reaching the mission</div>
         <div class="osd-cap-ctl">
-          <div class="osd-spec osd-spec-mid" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-spec-cell"><div class="osd-spec osd-spec-end" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div><div class="osd-spec-lab">automated · exceptions escalate</div></div>
           <div class="osd-check">✓</div>
         </div>
       </div>
       <div class="osd-caps-foot">
         <div class="osd-caps-more">+ the next workflow you name</div>
-        <div class="osd-caps-note">each line: an evaluated production workflow — benchmark suite + runbook · autonomy set per capability</div>
+        <div class="osd-caps-note">✓ = live only while its benchmark suite passes · each line: an evaluated production workflow with runbook · autonomy set per capability</div>
       </div>
     </div>
 
@@ -360,16 +362,16 @@ const SLIDES = [
       <div class="osd-band-row">
         <div class="osd-band-main">
           <span class="osd-band-name">VIRET OS</span>
-          <span class="osd-band-desc">the delivery — one sovereign harness composing the foundations into each capability</span>
+          <span class="osd-band-desc">the delivery — one harness composing the foundations into each capability</span>
         </div>
-        <span class="osd-band-tag">PALANTIR-FDE BUILD</span>
+        <span class="osd-band-tag">EMBEDDED ENGINEERING</span>
       </div>
       <div class="osd-band-row osd-band-sub">
         <div class="osd-band-main">
           <span class="osd-band-mem">YOUR MEMORY</span>
           <span class="osd-band-desc osd-band-desc-sm">your institution's knowledge, carried across every agent and capability — same context, standards, history · swap agents anytime</span>
         </div>
-        <span class="osd-band-tag osd-band-tag-dim">assured · evaluated</span>
+        <span class="osd-band-tag osd-band-tag-dim">every change human-approved · full audit history</span>
       </div>
     </div>
   </div>
@@ -393,11 +395,11 @@ const SLIDES = [
         <span class="osd-sax-head osd-sax-r" aria-hidden="true"></span>
       </div>
       <div class="osd-scards">
-        <div class="osd-scard"><div class="osd-scard-name">CHAT AGENTS</div><div class="osd-scard-desc">a person asks; the model answers or takes one step</div><div class="osd-scard-ex">ChatGPT · Claude · Gemini (when they invoke →)</div></div>
-        <div class="osd-scard"><div class="osd-scard-name">CONFIGURED AGENTS</div><div class="osd-scard-desc">off-the-shelf agents tuned with your instructions and files</div><div class="osd-scard-ex">Custom GPTs · Claude Skills · Cowork</div></div>
-        <div class="osd-scard"><div class="osd-scard-name">BOUGHT / ASSEMBLED</div><div class="osd-scard-desc">purpose-built products, or workflows assembled from blocks</div><div class="osd-scard-ex">Granola · Harvey · Notion AI · Lindy · n8n · Zapier Agents</div></div>
-        <div class="osd-scard"><div class="osd-scard-name">MANAGED-BUILT</div><div class="osd-scard-desc">agents built on a lab's managed runtime</div><div class="osd-scard-ex">Anthropic Managed Agents · OpenAI Assistants · Bedrock AgentCore</div></div>
-        <div class="osd-scard"><div class="osd-scard-name">CUSTOM-BUILT</div><div class="osd-scard-desc">full custom front- and back-end, orchestrated end to end</div><div class="osd-scard-ex">LangGraph · AG2 · CrewAI</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">CHAT AGENTS</div><div class="osd-scard-desc">a person asks; the model answers or takes one step</div><div class="osd-scard-ex">ChatGPT · Claude · Gemini</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">CONFIGURED AGENTS</div><div class="osd-scard-desc">off-the-shelf agents tuned with your instructions and files</div><div class="osd-scard-ex">Custom GPTs · Claude Skills</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">BOUGHT / ASSEMBLED</div><div class="osd-scard-desc">purpose-built products, or workflows assembled from blocks</div><div class="osd-scard-ex">Notion AI · Harvey · Zapier</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">MANAGED-BUILT</div><div class="osd-scard-desc">agents built on a lab's managed runtime</div><div class="osd-scard-ex">Anthropic Managed Agents · OpenAI Assistants</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">CUSTOM-BUILT</div><div class="osd-scard-desc">full custom front- and back-end, orchestrated end to end</div><div class="osd-scard-ex">built end-to-end by Viret</div></div>
       </div>
     </div>
   </div>
