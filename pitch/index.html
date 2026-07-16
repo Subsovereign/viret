@@ -68,8 +68,107 @@ tr.us .lg{color:#dfe8e2}
 .eqbar .eq{font-family:var(--serif);font-size:clamp(1.05rem,2.3vw,1.55rem);line-height:1.35;color:#fff}
 .eqbar .eq .op{color:var(--sage);padding:0 8px}
 .eqbar>p:not(.eq){color:#c9d8d0;font-size:13px;margin-top:10px;line-height:1.55}
-.osd-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.osd-inner{min-width:1020px}
+/* ---- Viret OS diagram (light re-skin) ---- */
+.osd{--osd-ink:var(--ink);--osd-ink2:var(--ink2);--osd-ink3:var(--ink3);--osd-mut:var(--ink3);--osd-boxdesc:var(--ink2);--osd-line:#ddd8ca;--osd-line2:#e4dfd2;--osd-accent:var(--green2);--osd-band:var(--green);--osd-band-ink:#f6f3ec;--osd-band-ink2:rgba(246,243,236,.75);--osd-band-ink3:rgba(246,243,236,.55);--osd-band-accent:var(--sage);--osd-band-line:rgba(246,243,236,.18);--osd-dot-border:#b5ae9e;--osd-dot-bg:var(--bg)}
+.osd{display:grid;grid-template-columns:250px minmax(0,1fr);column-gap:32px}
+.osd-bracket{grid-column:1;grid-row:1;position:relative;border-left:2px solid var(--osd-accent);padding:20px 0 20px 22px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.osd-bracket::before,.osd-bracket::after{content:"";position:absolute;left:0;width:14px;height:2px;background:var(--osd-accent)}
+.osd-bracket::before{top:0}
+.osd-bracket::after{bottom:0}
+.osd-bracket-kick{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--osd-accent);margin-bottom:8px}
+.osd-bracket-title{font-family:'Source Serif 4',serif;font-size:19px;line-height:1.35;color:var(--osd-ink)}
+.osd-bracket-note{font-size:12px;line-height:1.55;color:var(--osd-ink2);margin-top:8px}
+.osd-struck{display:flex;flex-direction:column;gap:5px}
+.osd-struck div{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--osd-mut);text-decoration:line-through}
+.osd-flow{grid-column:2;grid-row:1;display:flex;flex-direction:column;min-width:0}
+.osd-stack{grid-column:2;grid-row:2;min-width:0}
+.osd-band{background:var(--osd-band)}
+.osd-band-row{display:flex;justify-content:space-between;align-items:center;gap:8px 24px;padding:15px 20px;flex-wrap:wrap}
+.osd-band-sub{border-top:1px solid var(--osd-band-line);padding:11px 20px}
+.osd-band-main{display:flex;align-items:baseline;gap:4px 16px;flex-wrap:wrap;min-width:0}
+.osd-band-name{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.1em;color:var(--osd-band-ink);white-space:nowrap}
+.osd-band-desc{font-size:13px;line-height:1.5;color:var(--osd-band-ink2)}
+.osd-band-desc-sm{font-size:12.5px}
+.osd-band-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--osd-band-accent);white-space:nowrap}
+.osd-band-tag-dim{font-size:10.5px;color:var(--osd-band-ink3)}
+.osd-band-mem{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--osd-band-accent);white-space:nowrap}
+.osd-arrow{display:flex;flex-direction:column;align-items:center;padding:3px 0}
+.osd-arrow-stem{width:2px;height:16px;background:var(--osd-accent)}
+.osd-arrow-head{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--osd-accent)}
+.osd-caps{border:1px solid var(--osd-line);padding:22px 26px 18px}
+.osd-caps-head,.osd-cap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) 132px 56px;gap:16px}
+.osd-caps-head{border-bottom:1px solid var(--osd-line);padding-bottom:10px}
+.osd-cap{align-items:center;border-bottom:1px solid var(--osd-line2);padding:15px 0}
+.osd-col{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--osd-ink3)}
+.osd-col-strong{font-size:12px;letter-spacing:.14em;color:var(--osd-ink)}
+.osd-col-center{text-align:center}
+.osd-auto-scale{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--osd-ink3);margin-top:4px}
+.osd-auto-arr{color:var(--osd-mut)}
+.osd-cap-name{font-family:'Source Serif 4',serif;font-size:clamp(21px,2.4vw,26px);line-height:1.2;color:var(--osd-ink)}
+.osd-cap-impact{font-size:12.5px;line-height:1.55;color:var(--osd-ink2)}
+.osd-cap-ctl{display:contents}
+.osd-spec{position:relative;height:13px;align-self:center}
+.osd-spec::before{content:"";position:absolute;left:2px;right:2px;top:6px;height:1px;background:var(--osd-line)}
+.osd-sdot{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--osd-dot-border);background:var(--osd-dot-bg);transform:translateY(-50%)}
+.osd-sdot:nth-child(1){left:0}
+.osd-sdot:nth-child(2){left:50%;transform:translate(-50%,-50%)}
+.osd-sdot:nth-child(3){right:0}
+.osd-spec-mid .osd-sdot:nth-child(2),.osd-spec-end .osd-sdot:nth-child(3){width:13px;height:13px;border:none;background:var(--osd-accent)}
+.osd-check{display:flex;align-items:center;justify-content:center;color:var(--osd-accent);font-size:16px}
+.osd-caps-foot{display:flex;justify-content:space-between;align-items:baseline;gap:6px 24px;padding:13px 0 3px;flex-wrap:wrap}
+.osd-caps-more{font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;color:var(--osd-boxdesc)}
+.osd-caps-note{font-size:11.5px;line-height:1.5;color:var(--osd-ink3)}
+.osd-tick{width:1px;height:18px;background:var(--osd-line);margin:3px auto}
+.osd-ticks{display:grid;grid-template-columns:repeat(4,1fr);column-gap:12px;padding-top:2px}
+.osd-ticks span{justify-self:center;width:1px;height:20px;background:var(--osd-line)}
+.osd-ticks-int{padding-top:0}
+.osd-ticks-int span{grid-column:3;height:24px}
+.osd-found{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+.osd-fbox{border:1px solid var(--osd-line);padding:16px 18px}
+.osd-fbox-name{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--osd-ink);margin-bottom:6px}
+.osd-fbox-desc{font-size:12px;line-height:1.55;color:var(--osd-boxdesc)}
+.osd-spanel{border:1px solid var(--osd-line);padding:20px 22px 18px}
+.osd-spanel-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:var(--osd-ink);margin-bottom:14px}
+.osd-saxis{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.osd-sax-lab{font-size:11.5px;line-height:1.4;color:var(--osd-ink3)}
+.osd-sax-line{flex:1;height:1px;background:var(--osd-line);min-width:24px}
+.osd-sax-head{flex:0 0 auto;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.osd-sax-l{border-right:7px solid var(--osd-ink3)}
+.osd-sax-r{border-left:7px solid var(--osd-ink3)}
+.osd-scards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.osd-scard{border:1px solid var(--osd-line);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px}
+.osd-scard-name{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--osd-ink)}
+.osd-scard-desc{font-size:11.5px;line-height:1.5;color:var(--osd-ink2)}
+.osd-scard-ex{font-size:10.5px;line-height:1.5;color:var(--osd-ink3);margin-top:auto}
+@media(max-width:920px){
+  .osd{grid-template-columns:minmax(0,1fr)}
+  .osd-bracket,.osd-flow,.osd-stack{grid-column:1}
+  .osd-bracket{grid-row:1;justify-content:flex-start;padding:4px 0 4px 18px;margin-bottom:24px;gap:12px}
+  .osd-bracket::before,.osd-bracket::after{display:none}
+  .osd-flow{grid-row:2}
+  .osd-stack{grid-row:3;margin-top:18px}
+  .osd-struck{flex-direction:row;flex-wrap:wrap;gap:4px 16px}
+  .osd-caps{padding:18px 18px 14px}
+  .osd-caps-head{display:none}
+  .osd-cap{display:block;padding:16px 0}
+  .osd-cap-impact{margin-top:4px}
+  .osd-cap-ctl{display:flex;align-items:center;gap:18px;margin-top:12px}
+  .osd-spec{flex:0 0 140px;width:140px}
+  .osd-tick,.osd-ticks{display:none}
+  .osd-found{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:18px}
+  .osd-scards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:680px){
+  .osd-band-row{padding:13px 16px}
+  .osd-band-sub{padding:10px 16px}
+  .osd-caps{padding:16px 14px 12px}
+  .osd-cap-name{font-size:20px}
+  .osd-found{grid-template-columns:minmax(0,1fr)}
+  .osd-scards{grid-template-columns:minmax(0,1fr)}
+  .osd-spanel{padding:16px 14px 14px}
+  .osd-saxis{flex-direction:column;align-items:flex-start;gap:4px}
+  .osd-sax-line,.osd-sax-head{display:none}
+}
 .ask{margin-top:12px;padding-top:10px;border-top:1px solid #ddd8ca}
 .ask .asklbl{display:block;font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
 .ask em{font-family:var(--serif);font-style:italic;font-size:14.5px;line-height:1.4;color:var(--green)}
@@ -179,169 +278,130 @@ const SLIDES = [
   <p class="kick">The solution</p>
   <h2>Viret OS — an agentic operating system the client owns.</h2>
   <p class="mt2" style="max-width:840px">One control plane that runs an organization's AI work across any model, any vendor, and the systems they already have. Ships as owned <strong>Capabilities</strong> — evaluated production workflows with benchmark suite and runbook. <strong>First production deployment inside 90 days.</strong></p>
-  <div class="osd-wrap mt3"><div class="osd-inner" style="background:#151612;color:#ece9e0;border-radius:10px;padding:34px 34px 30px">
+  <div class="osd mt3">
+  <aside class="osd-bracket">
+    <div>
+      <div class="osd-bracket-kick">ONE TEAM</div>
+      <div class="osd-bracket-title">MBB partner rigor.<br>Palantir FDE build.</div>
+      <div class="osd-bracket-note">strategy compiles to code — nothing in between:</div>
+    </div>
+    <div class="osd-struck">
+      <div>RFP + procurement</div>
+      <div>vendor selection</div>
+      <div>system integrators</div>
+      <div>change-management program</div>
+    </div>
+  </aside>
 
-        <div style="display:grid;grid-template-columns:250px 1fr;gap:0 32px;align-items:stretch">
-          <div style="position:relative;border-left:2px solid #7fb8a4;padding:20px 0 20px 22px;display:flex;flex-direction:column;justify-content:center;gap:14px">
-            <div style="position:absolute;left:0;top:0;width:14px;height:2px;background:#7fb8a4"></div>
-            <div style="position:absolute;left:0;bottom:0;width:14px;height:2px;background:#7fb8a4"></div>
-            <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#7fb8a4;margin-bottom:8px">ONE TEAM</div>
-              <div style="font-family:'Source Serif 4',serif;font-size:19px;line-height:1.35;color:#f6f3ec">MBB partner rigor.<br>Palantir FDE build.</div>
-              <div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.6);margin-top:8px">strategy compiles to code — nothing in between:</div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:5px">
-              
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">RFP + procurement</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">vendor selection</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">system integrators</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(236,233,224,.35);text-decoration:line-through">change-management program</div>
-            </div>
-          </div>
-
-          <div style="display:flex;flex-direction:column">
-            <div style="background:#164136;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:15px 20px">
-              <div style="display:flex;align-items:baseline;gap:16px">
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.1em;color:#f6f3ec;white-space:nowrap">VIRET STRATEGY</div>
-                <div style="font-size:13px;color:rgba(246,243,236,.75)">the decision — what your institution must achieve, and which workflow delivers it</div>
-              </div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7fb8a4;white-space:nowrap">MBB-PARTNER RIGOR</div>
-            </div>
-
-            <div style="display:flex;flex-direction:column;align-items:center;padding:3px 0">
-              <div style="width:2px;height:16px;background:#7fb8a4"></div>
-              <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #7fb8a4"></div>
-            </div>
-
-            <div style="border:1px solid rgba(236,233,224,.35);padding:22px 26px 18px">
-              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;border-bottom:1px solid rgba(236,233,224,.35);padding-bottom:10px">
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:#f6f3ec">YOUR CAPABILITIES</div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(236,233,224,.5)">MEASURED IN IMPACT</div>
-                <div>
-                  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(236,233,224,.5)">AUTONOMY</div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(236,233,224,.45);margin-top:4px"><span>human-led</span><span style="color:rgba(236,233,224,.3)">→</span><span>agent-led</span></div>
-                </div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(236,233,224,.5);text-align:center">ASSURANCE</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
-                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Field operations</div>
-                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">field teams routed, briefed, resupplied — more visits per worker</div>
-                <div>
-                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
-                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                    <div style="position:absolute;left:50%;top:-6px;margin-left:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
-                    <div style="position:absolute;right:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
-                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Donor reporting</div>
-                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">every funder reported on time — staff-days returned to programs</div>
-                <div>
-                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
-                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                    <div style="position:absolute;left:50%;top:-4px;margin-left:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                    <div style="position:absolute;right:0;top:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
-                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Customer service</div>
-                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">every question answered in-language, any hour — resolution in hours, not weeks</div>
-                <div>
-                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
-                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                    <div style="position:absolute;left:50%;top:-4px;margin-left:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                    <div style="position:absolute;right:0;top:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 260px 140px 80px;gap:18px;align-items:center;border-bottom:1px solid rgba(236,233,224,.18);padding:15px 0">
-                <div style="font-family:'Source Serif 4',serif;font-size:26px;color:#f6f3ec">Marketing / Fundraising</div>
-                <div style="font-size:12.5px;line-height:1.55;color:rgba(236,233,224,.7)">more qualified prospects — more dollars reaching the mission</div>
-                <div>
-                  <div style="position:relative;height:1px;background:rgba(236,233,224,.35);margin:6px 2px 8px">
-                    <div style="position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                    <div style="position:absolute;left:50%;top:-6px;margin-left:-6px;width:13px;height:13px;border-radius:50%;background:#7fb8a4"></div>
-                    <div style="position:absolute;right:0;top:-4px;width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(236,233,224,.5);background:#151612"></div>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:center"><span style="color:#7fb8a4;font-size:16px">✓</span></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:13px 0 3px">
-                <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;color:rgba(236,233,224,.55)">+ the next workflow you name</div>
-                <div style="font-size:11.5px;color:rgba(236,233,224,.5)">each line: an evaluated production workflow — benchmark suite + runbook · autonomy set per capability</div>
-              </div>
-            </div>
-
-            <div style="display:flex;justify-content:center;padding:3px 0"><div style="width:1px;height:18px;background:rgba(236,233,224,.35)"></div></div>
-
-            <div style="background:#164136">
-              <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:15px 20px">
-                <div style="display:flex;align-items:baseline;gap:16px">
-                  <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.1em;color:#f6f3ec;white-space:nowrap">VIRET OS</div>
-                  <div style="font-size:13px;color:rgba(246,243,236,.75)">the delivery — one sovereign harness composing the foundations into each capability</div>
-                </div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7fb8a4;white-space:nowrap">PALANTIR-FDE BUILD</div>
-              </div>
-              <div style="border-top:1px solid rgba(246,243,236,.18);display:flex;justify-content:space-between;align-items:center;gap:24px;padding:11px 20px">
-                <div style="display:flex;align-items:baseline;gap:16px">
-                  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#7fb8a4;white-space:nowrap">YOUR MEMORY</div>
-                  <div style="font-size:12.5px;color:rgba(246,243,236,.7)">your institution's knowledge, carried across every agent and capability — same context, standards, history · swap agents anytime</div>
-                </div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(246,243,236,.55);white-space:nowrap">assured · evaluated</div>
-              </div>
-            </div>
-          </div>
+  <div class="osd-flow">
+    <div class="osd-band">
+      <div class="osd-band-row">
+        <div class="osd-band-main">
+          <span class="osd-band-name">VIRET STRATEGY</span>
+          <span class="osd-band-desc">the decision — what your institution must achieve, and which workflow delivers it</span>
         </div>
+        <span class="osd-band-tag">MBB-PARTNER RIGOR</span>
+      </div>
+    </div>
 
-        <div style="display:grid;grid-template-columns:250px 1fr;gap:0 32px">
-          <div></div>
-          <div>
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0 12px;padding-top:2px">
-              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
-              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
-              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
-              <div style="display:flex;justify-content:center"><div style="width:1px;height:20px;background:rgba(236,233,224,.35)"></div></div>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:stretch">
-              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Your compute</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">runs where you choose — on-prem, in-region, or sovereign cloud</div></div>
-              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Your data</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">owned and governed by you, in-jurisdiction, in files your staff can read</div></div>
-              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Intelligence</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">spans your agents across the agent spectrum</div></div>
-              <div style="border:1px solid rgba(236,233,224,.35);padding:16px 18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:6px">Your software</div><div style="font-size:12px;line-height:1.55;color:rgba(236,233,224,.55)">the systems you already run, wired in — not replaced. ERP · CRM · EMR · M&amp;E</div></div>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0 12px">
-              <div></div><div></div>
-              <div style="display:flex;justify-content:center"><div style="width:1px;height:24px;background:rgba(236,233,224,.35)"></div></div>
-              <div></div>
-            </div>
+    <div class="osd-arrow" aria-hidden="true"><span class="osd-arrow-stem"></span><span class="osd-arrow-head"></span></div>
 
-            <div style="border:1px solid rgba(236,233,224,.35);padding:20px 22px 18px">
-              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:rgba(236,233,224,.85)">Viret OS integrates across the agent spectrum</div>
-                <div style="font-size:12px;color:rgba(236,233,224,.55)"><br></div>
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-                <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-right:7px solid rgba(236,233,224,.6)"></div>
-                <div style="font-size:11.5px;color:rgba(236,233,224,.6);white-space:nowrap">human-initiated · simple, independent action</div>
-                <div style="flex:1;height:1px;background:rgba(236,233,224,.35)"></div>
-                <div style="font-size:11.5px;color:rgba(236,233,224,.6);white-space:nowrap">high-complexity · long-running · multi-agent orchestration</div>
-                <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid rgba(236,233,224,.6)"></div>
-              </div>
-              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
-                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">CHAT AGENTS</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">a person asks; the model answers or takes one step</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">ChatGPT · Claude · Gemini (when they invoke →)</div></div>
-                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">CONFIGURED AGENTS</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">off-the-shelf agents tuned with your instructions and files</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">Custom GPTs · Claude Skills · Cowork</div></div>
-                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">BOUGHT / ASSEMBLED</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">purpose-built products, or workflows assembled from blocks</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">Granola · Harvey · Notion AI · Lindy · n8n · Zapier Agents</div></div>
-                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">MANAGED-BUILT</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">agents built on a lab's managed runtime</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">Anthropic Managed Agents · OpenAI Assistants · Bedrock AgentCore</div></div>
-                <div style="border:1px solid rgba(236,233,224,.35);padding:13px 13px 11px;display:flex;flex-direction:column;gap:7px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f6f3ec">CUSTOM-BUILT</div><div style="font-size:11.5px;line-height:1.5;color:rgba(236,233,224,.7)">full custom front- and back-end, orchestrated end to end</div><div style="font-size:10.5px;line-height:1.5;color:rgba(236,233,224,.45);margin-top:auto">LangGraph · AG2 · CrewAI</div></div>
-              </div>
-            </div>
-          </div>
+    <div class="osd-caps">
+      <div class="osd-caps-head">
+        <div class="osd-col osd-col-strong">YOUR CAPABILITIES</div>
+        <div class="osd-col">MEASURED IN IMPACT</div>
+        <div>
+          <div class="osd-col">AUTONOMY</div>
+          <div class="osd-auto-scale"><span>human-led</span><span class="osd-auto-arr">→</span><span>agent-led</span></div>
         </div>
-  </div></div>
+        <div class="osd-col osd-col-center">ASSURANCE</div>
+      </div>
+      <div class="osd-cap">
+        <div class="osd-cap-name">Field operations</div>
+        <div class="osd-cap-impact">field teams routed, briefed, resupplied — more visits per worker</div>
+        <div class="osd-cap-ctl">
+          <div class="osd-spec osd-spec-mid" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-check">✓</div>
+        </div>
+      </div>
+      <div class="osd-cap">
+        <div class="osd-cap-name">Donor reporting</div>
+        <div class="osd-cap-impact">every funder reported on time — staff-days returned to programs</div>
+        <div class="osd-cap-ctl">
+          <div class="osd-spec osd-spec-end" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-check">✓</div>
+        </div>
+      </div>
+      <div class="osd-cap">
+        <div class="osd-cap-name">Customer service</div>
+        <div class="osd-cap-impact">every question answered in-language, any hour — resolution in hours, not weeks</div>
+        <div class="osd-cap-ctl">
+          <div class="osd-spec osd-spec-end" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-check">✓</div>
+        </div>
+      </div>
+      <div class="osd-cap">
+        <div class="osd-cap-name">Marketing / Fundraising</div>
+        <div class="osd-cap-impact">more qualified prospects — more dollars reaching the mission</div>
+        <div class="osd-cap-ctl">
+          <div class="osd-spec osd-spec-mid" aria-hidden="true"><span class="osd-sdot"></span><span class="osd-sdot"></span><span class="osd-sdot"></span></div>
+          <div class="osd-check">✓</div>
+        </div>
+      </div>
+      <div class="osd-caps-foot">
+        <div class="osd-caps-more">+ the next workflow you name</div>
+        <div class="osd-caps-note">each line: an evaluated production workflow — benchmark suite + runbook · autonomy set per capability</div>
+      </div>
+    </div>
+
+    <div class="osd-tick" aria-hidden="true"></div>
+
+    <div class="osd-band">
+      <div class="osd-band-row">
+        <div class="osd-band-main">
+          <span class="osd-band-name">VIRET OS</span>
+          <span class="osd-band-desc">the delivery — one sovereign harness composing the foundations into each capability</span>
+        </div>
+        <span class="osd-band-tag">PALANTIR-FDE BUILD</span>
+      </div>
+      <div class="osd-band-row osd-band-sub">
+        <div class="osd-band-main">
+          <span class="osd-band-mem">YOUR MEMORY</span>
+          <span class="osd-band-desc osd-band-desc-sm">your institution's knowledge, carried across every agent and capability — same context, standards, history · swap agents anytime</span>
+        </div>
+        <span class="osd-band-tag osd-band-tag-dim">assured · evaluated</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="osd-stack">
+    <div class="osd-ticks" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="osd-found">
+      <div class="osd-fbox"><div class="osd-fbox-name">Your compute</div><div class="osd-fbox-desc">runs where you choose — on-prem, in-region, or sovereign cloud</div></div>
+      <div class="osd-fbox"><div class="osd-fbox-name">Your data</div><div class="osd-fbox-desc">owned and governed by you, in-jurisdiction, in files your staff can read</div></div>
+      <div class="osd-fbox"><div class="osd-fbox-name">Intelligence</div><div class="osd-fbox-desc">spans your agents across the agent spectrum</div></div>
+      <div class="osd-fbox"><div class="osd-fbox-name">Your software</div><div class="osd-fbox-desc">the systems you already run, wired in — not replaced. ERP · CRM · EMR · M&amp;E</div></div>
+    </div>
+    <div class="osd-ticks osd-ticks-int" aria-hidden="true"><span></span></div>
+    <div class="osd-spanel">
+      <div class="osd-spanel-label">Viret OS integrates across the agent spectrum</div>
+      <div class="osd-saxis">
+        <span class="osd-sax-head osd-sax-l" aria-hidden="true"></span>
+        <span class="osd-sax-lab">human-initiated · simple, independent action</span>
+        <span class="osd-sax-line" aria-hidden="true"></span>
+        <span class="osd-sax-lab">high-complexity · long-running · multi-agent orchestration</span>
+        <span class="osd-sax-head osd-sax-r" aria-hidden="true"></span>
+      </div>
+      <div class="osd-scards">
+        <div class="osd-scard"><div class="osd-scard-name">CHAT AGENTS</div><div class="osd-scard-desc">a person asks; the model answers or takes one step</div><div class="osd-scard-ex">ChatGPT · Claude · Gemini (when they invoke →)</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">CONFIGURED AGENTS</div><div class="osd-scard-desc">off-the-shelf agents tuned with your instructions and files</div><div class="osd-scard-ex">Custom GPTs · Claude Skills · Cowork</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">BOUGHT / ASSEMBLED</div><div class="osd-scard-desc">purpose-built products, or workflows assembled from blocks</div><div class="osd-scard-ex">Granola · Harvey · Notion AI · Lindy · n8n · Zapier Agents</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">MANAGED-BUILT</div><div class="osd-scard-desc">agents built on a lab's managed runtime</div><div class="osd-scard-ex">Anthropic Managed Agents · OpenAI Assistants · Bedrock AgentCore</div></div>
+        <div class="osd-scard"><div class="osd-scard-name">CUSTOM-BUILT</div><div class="osd-scard-desc">full custom front- and back-end, orchestrated end to end</div><div class="osd-scard-ex">LangGraph · AG2 · CrewAI</div></div>
+      </div>
+    </div>
+  </div>
+  </div>
   <p class="fn">Human-in-the-loop by design: every deployment ships with an autonomy dial the client sets. Agents propose; designated people approve. Autonomy is a setting, not the pitch.</p>
 `},
 
