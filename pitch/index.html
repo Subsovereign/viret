@@ -561,6 +561,49 @@ const SLIDES = [
   <a class="cta mt4" id="contact-cta" data-u="olleh" data-d="ia.teriv" href="#">Start a conversation &rarr;</a>
 `},
 
+// 11 — Appendix divider
+{ id:'appendix', center:true, html:`
+  <div style="width:11px;height:11px;border-radius:50%;background:var(--sage);margin-bottom:28px" aria-hidden="true"></div>
+  <p class="kick">Appendix</p>
+  <h2 style="font-weight:400">The technical read.</h2>
+  <p class="sub mt3">A1 &middot; The knowledge harness vs. the agent platforms</p>
+`},
+
+// 12 — Appendix A1: harness vs. platforms
+{ id:'harness-vs', html:`
+  <p class="kick">Appendix A1 &middot; as of July 2026</p>
+  <h2>The platforms automate what agents know.<br/>Viret governs it — and the client owns it.</h2>
+  <div class="tbl-wrap">
+    <table class="cmp" style="min-width:780px">
+      <thead><tr><th></th><th>Where knowledge lives</th><th>Who approves changes</th><th>Audit &middot; evals &middot; evidence</th><th>Portability</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Hyperscaler agent platforms<br/><span style="font:400 11px var(--mono);color:var(--ink3)">AWS Bedrock &middot; Azure AI Foundry &middot; Vertex AI</span></td>
+          <td>Managed memory stores, vector indexes, and RAG pipelines in the vendor's cloud — API-readable, not staff-readable</td>
+          <td>Automated LLM extraction and consolidation — no human gate on memory writes&sup1;; approval exists only for tool execution</td>
+          <td>Observability, eval jobs, and logs are separate artifacts you stitch together</td>
+          <td>Model choice within the platform; memory strategies, policies, and pipelines don't leave</td>
+        </tr>
+        <tr>
+          <td>Palantir AIP<br/><span style="font:400 11px var(--mono);color:var(--ink3)">the Ontology</span></td>
+          <td>Institutional knowledge as a first-class ontology — modeled inside Palantir's proprietary environment</td>
+          <td>Governed — through Palantir tooling</td>
+          <td>Strong lineage and audit — in-platform</td>
+          <td>None meaningful; migration means rebuilding years of semantic engineering&sup2;</td>
+        </tr>
+        <tr class="us">
+          <td>Viret OS harness</td>
+          <td>Plain, version-controlled files in the client's own repository — staff-readable and editable</td>
+          <td>Agents propose; designated people approve — pull-request discipline on institutional memory</td>
+          <td>One append-only record is the audit trail, the eval set, and the impact evidence</td>
+          <td>Any model, any runtime — including the platforms above; swap without a rebuild</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fn">&sup1; Verified at documentation level, July 2026: Bedrock's human-in-the-loop confirms tool actions, not memory writes; Microsoft's own security guidance (June 2026) advises customers to build their own review-and-quarantine layer for agent memory. &nbsp;&sup2; Analysts call the Ontology Palantir's deepest moat — proof that institutional knowledge is the durable AI asset. Viret changes who owns it.</p>
+`},
+
 ];
 
 const N = SLIDES.length;
