@@ -21,7 +21,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font
 ::selection{background:var(--green);color:var(--bg)}
 
 /* Progress */
-.progress{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;gap:6px;padding:12px 24px;background:linear-gradient(180deg,rgba(246,243,236,.95) 60%,transparent)}
+.progress{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;gap:6px;padding:12px 84px 12px 24px;background:linear-gradient(180deg,rgba(246,243,236,.95) 60%,transparent)}
 .pdot{flex:1;height:3px;border-radius:2px;background:#d8d3c6;cursor:pointer;transition:background .3s var(--ease)}
 .pdot.on{background:var(--green)}.pdot.was{background:var(--sage)}
 .scnt{position:fixed;top:10px;right:24px;z-index:101;font:12px var(--mono);color:var(--ink3);font-variant-numeric:tabular-nums}
@@ -564,8 +564,7 @@ const SLIDES = [
 // 11 — Appendix divider
 { id:'appendix', center:true, html:`
   <div style="width:11px;height:11px;border-radius:50%;background:var(--sage);margin-bottom:28px" aria-hidden="true"></div>
-  <p class="kick">Appendix</p>
-  <h2 style="font-weight:400">The technical read.</h2>
+  <h2 style="font-weight:400">Appendix</h2>
   <p class="sub mt3">A1 &middot; The knowledge harness vs. the agent platforms</p>
 `},
 
