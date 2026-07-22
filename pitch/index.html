@@ -92,6 +92,10 @@ tr.us .lg{color:#dfe8e2}
 .osd-band-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--osd-band-accent);white-space:nowrap}
 .osd-band-tag-dim{font-size:10.5px;color:var(--osd-band-ink3)}
 .osd-band-mem{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--osd-band-accent);white-space:nowrap}
+.osd-harness{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--osd-band-line);border-top:1px solid var(--osd-band-line)}
+.osd-hcell{background:var(--osd-band);padding:12px 16px}
+.osd-hcell-name{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--osd-band-accent);margin-bottom:5px}
+.osd-hcell-desc{font-size:11.5px;line-height:1.5;color:var(--osd-band-ink2)}
 .osd-arrow{display:flex;flex-direction:column;align-items:center;padding:3px 0}
 .osd-arrow-stem{width:2px;height:16px;background:var(--osd-accent)}
 .osd-arrow-head{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--osd-accent)}
@@ -152,6 +156,7 @@ tr.us .lg{color:#dfe8e2}
   .osd-struck{flex-direction:row;flex-wrap:wrap;gap:4px 16px}
   .osd-caps{padding:18px 18px 14px}
   .osd-caps-head{display:none}
+  .osd-harness{grid-template-columns:repeat(2,minmax(0,1fr))}
   .osd-cap{display:block;padding:16px 0}
   .osd-cap-impact{margin-top:4px}
   .osd-cap-ctl{display:flex;align-items:center;gap:18px;margin-top:12px}
@@ -163,6 +168,8 @@ tr.us .lg{color:#dfe8e2}
 @media(max-width:680px){
   .osd-band-row{padding:13px 16px}
   .osd-band-sub{padding:10px 16px}
+  .osd-harness{grid-template-columns:minmax(0,1fr)}
+  .osd-hcell{padding:11px 16px}
   .osd-caps{padding:16px 14px 12px}
   .osd-cap-name{font-size:20px}
   .osd-found{grid-template-columns:minmax(0,1fr)}
@@ -225,11 +232,35 @@ table.cmp tr.us td{background:#164136;color:#dfe8e2}
 table.cmp tr.us td:first-child{color:#fff;border-radius:6px 0 0 6px}
 table.cmp tr.us td:last-child{border-radius:0 6px 6px 0}
 
+/* Password gate */
+.gate{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+.gate.off{display:none}
+.gate-box{width:100%;max-width:380px;text-align:center}
+.gate-brand{font-family:var(--serif);font-size:2.6rem;font-weight:500;color:var(--green)}
+.gate-sub{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-top:10px}
+.gate-row{display:flex;gap:8px;margin-top:26px}
+.gate-in{flex:1;min-width:0;padding:12px 14px;font:15px var(--sans);color:var(--ink);background:#fff;border:1px solid #c9c3b4;border-radius:8px;outline:none}
+.gate-in:focus{border-color:var(--green)}
+.gate-btn{padding:12px 20px;background:var(--green);color:var(--bg);font:600 14px var(--sans);border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+.gate-btn:hover{background:var(--green2)}
+.gate-err{font-size:13px;color:#8a3b2f;margin-top:12px;min-height:18px}
+
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#c9c3b4;border-radius:3px}
 @media(max-width:680px){.sl{padding:40px 22px 64px}}
 </style>
 </head>
 <body>
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div class="gate-brand">V<span class="ti">ı</span>ret</div>
+    <div class="gate-sub">Investor briefing &middot; password required</div>
+    <form class="gate-row" id="gate-form">
+      <input class="gate-in" id="gate-in" type="password" placeholder="Password" autocomplete="off" autofocus/>
+      <button class="gate-btn" type="submit">Enter</button>
+    </form>
+    <div class="gate-err" id="gate-err"></div>
+  </div>
+</div>
 <div class="progress" id="prog"></div>
 <div class="scnt" id="cnt"></div>
 <div class="deck" id="deck"></div>
@@ -278,8 +309,8 @@ const SLIDES = [
 // 4 — Solution
 { id:'solution', html:`
   <p class="kick">The solution</p>
-  <h2>Viret OS — an agentic operating system the client owns.</h2>
-  <p class="mt2" style="max-width:840px">One control plane that runs an organization's AI work across any model, any vendor, and the systems they already have. Ships as owned <strong>Capabilities</strong> — evaluated production workflows with benchmark suite and runbook. <strong>First production deployment inside 90 days.</strong></p>
+  <h2>Viret OS — the knowledge harness, run like production code.</h2>
+  <p class="mt2" style="max-width:860px">Viret OS is <strong>not an orchestration layer we install</strong> — orchestration is commoditizing, and the runtimes below ship it natively. It is our <strong>approach to managing the knowledge harness</strong>: the institutional knowledge, evals, and guardrails every agent consumes — version-controlled, human-approved, owned by the client, and portable across any model and any runtime. Ships as owned <strong>Capabilities</strong> — evaluated production workflows with benchmark suite and runbook. <strong>First production deployment inside 90 days.</strong></p>
   <div class="osd mt3">
   <aside class="osd-bracket">
     <div>
@@ -362,16 +393,22 @@ const SLIDES = [
       <div class="osd-band-row">
         <div class="osd-band-main">
           <span class="osd-band-name">VIRET OS</span>
-          <span class="osd-band-desc">the delivery — one harness composing the foundations into each capability</span>
+          <span class="osd-band-desc">the knowledge harness — how every capability is grounded, evaluated, and governed &middot; a method and toolkit, not an orchestration runtime</span>
         </div>
         <span class="osd-band-tag">EMBEDDED ENGINEERING</span>
       </div>
+      <div class="osd-harness">
+        <div class="osd-hcell"><div class="osd-hcell-name">CONTEXT</div><div class="osd-hcell-desc">institutional knowledge as version-controlled plain files — staff-readable, agent-consumed, in your repository</div></div>
+        <div class="osd-hcell"><div class="osd-hcell-name">REVIEW GATE</div><div class="osd-hcell-desc">agents propose changes; designated people approve — pull-request discipline applied to institutional memory</div></div>
+        <div class="osd-hcell"><div class="osd-hcell-name">EVALS</div><div class="osd-hcell-desc">per-capability benchmark suites built from real cases — a capability stays live only while its suite passes</div></div>
+        <div class="osd-hcell"><div class="osd-hcell-name">AUDIT LOG</div><div class="osd-hcell-desc">append-only record of every agent action — audit trail, eval dataset, and impact evidence are one artifact</div></div>
+      </div>
       <div class="osd-band-row osd-band-sub">
         <div class="osd-band-main">
-          <span class="osd-band-mem">YOUR MEMORY</span>
-          <span class="osd-band-desc osd-band-desc-sm">your institution's knowledge, carried across every agent and capability — same context, standards, history · swap agents anytime</span>
+          <span class="osd-band-mem">PORTABLE BY DESIGN</span>
+          <span class="osd-band-desc osd-band-desc-sm">the same harness rides any model and any agent runtime below — swap either without a rebuild</span>
         </div>
-        <span class="osd-band-tag osd-band-tag-dim">every change human-approved · full audit history</span>
+        <span class="osd-band-tag osd-band-tag-dim">orchestration comes from the runtime, not from Viret OS</span>
       </div>
     </div>
   </div>
@@ -386,7 +423,7 @@ const SLIDES = [
     </div>
     <div class="osd-ticks osd-ticks-int" aria-hidden="true"><span></span></div>
     <div class="osd-spanel">
-      <div class="osd-spanel-label">Viret OS integrates across the agent spectrum</div>
+      <div class="osd-spanel-label">One harness, any runtime — Viret OS manages what these agents know, not how they run</div>
       <div class="osd-saxis">
         <span class="osd-sax-head osd-sax-l" aria-hidden="true"></span>
         <span class="osd-sax-lab">human-initiated · simple, independent action</span>
@@ -472,7 +509,7 @@ const SLIDES = [
   <div class="c c-g mt2">
     <p style="font-size:13.5px"><strong>Representative client:</strong> ~$1.5M Build (one Capability) in year one &rarr; <strong>$400–600K/yr recurring</strong> (Platform + Assure + Enable) at blended ~70% gross margin — <strong>~$3M of revenue over three years</strong> from one institution, with the recurring layer renewing by choice.</p>
   </div>
-  <p class="mt3" style="max-width:860px">Each deployment strengthens the sector templates that make the next one <strong>faster and higher-margin</strong> — build the economic-planning capability once, then deploy it to every planning ministry. The quality signal: <strong>voluntary net revenue retention</strong> — clients who could leave freely, and instead expand.</p>
+  <p class="mt3" style="max-width:860px"><strong>Independence is the product; recurring revenue is earned.</strong> Handover is complete from engagement one — the client's own team can run and extend the system, and the fork right makes leaving real. What renews is the layer that keeps making their job easier: harness updates, repeatable solutions, and sector templates that also make each next deployment <strong>faster and higher-margin</strong> — build the economic-planning capability once, then deploy it to every planning ministry. The quality signal: <strong>voluntary net revenue retention</strong> — clients who could leave freely, and instead expand.</p>
 `},
 
 // 8 — Go-to-market / pipeline
@@ -524,6 +561,49 @@ const SLIDES = [
   <a class="cta mt4" id="contact-cta" data-u="olleh" data-d="ia.teriv" href="#">Start a conversation &rarr;</a>
 `},
 
+// 11 — Appendix divider
+{ id:'appendix', center:true, html:`
+  <div style="width:11px;height:11px;border-radius:50%;background:var(--sage);margin-bottom:28px" aria-hidden="true"></div>
+  <p class="kick">Appendix</p>
+  <h2 style="font-weight:400">The technical read.</h2>
+  <p class="sub mt3">A1 &middot; The knowledge harness vs. the agent platforms</p>
+`},
+
+// 12 — Appendix A1: harness vs. platforms
+{ id:'harness-vs', html:`
+  <p class="kick">Appendix A1 &middot; as of July 2026</p>
+  <h2>The platforms automate what agents know.<br/>Viret governs it — and the client owns it.</h2>
+  <div class="tbl-wrap">
+    <table class="cmp" style="min-width:780px">
+      <thead><tr><th></th><th>Where knowledge lives</th><th>Who approves changes</th><th>Audit &middot; evals &middot; evidence</th><th>Portability</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Hyperscaler agent platforms<br/><span style="font:400 11px var(--mono);color:var(--ink3)">AWS Bedrock &middot; Azure AI Foundry &middot; Vertex AI</span></td>
+          <td>Managed memory stores, vector indexes, and RAG pipelines in the vendor's cloud — API-readable, not staff-readable</td>
+          <td>Automated LLM extraction and consolidation — no human gate on memory writes&sup1;; approval exists only for tool execution</td>
+          <td>Observability, eval jobs, and logs are separate artifacts you stitch together</td>
+          <td>Model choice within the platform; memory strategies, policies, and pipelines don't leave</td>
+        </tr>
+        <tr>
+          <td>Palantir AIP<br/><span style="font:400 11px var(--mono);color:var(--ink3)">the Ontology</span></td>
+          <td>Institutional knowledge as a first-class ontology — modeled inside Palantir's proprietary environment</td>
+          <td>Governed — through Palantir tooling</td>
+          <td>Strong lineage and audit — in-platform</td>
+          <td>None meaningful; migration means rebuilding years of semantic engineering&sup2;</td>
+        </tr>
+        <tr class="us">
+          <td>Viret OS harness</td>
+          <td>Plain, version-controlled files in the client's own repository — staff-readable and editable</td>
+          <td>Agents propose; designated people approve — pull-request discipline on institutional memory</td>
+          <td>One append-only record is the audit trail, the eval set, and the impact evidence</td>
+          <td>Any model, any runtime — including the platforms above; swap without a rebuild</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fn">&sup1; Verified at documentation level, July 2026: Bedrock's human-in-the-loop confirms tool actions, not memory writes; Microsoft's own security guidance (June 2026) advises customers to build their own review-and-quarantine layer for agent memory. &nbsp;&sup2; Analysts call the Ontology Palantir's deepest moat — proof that institutional knowledge is the durable AI asset. Viret changes who owns it.</p>
+`},
+
 ];
 
 const N = SLIDES.length;
@@ -552,14 +632,42 @@ function go(i){
 function next(){if(cur<N-1)go(cur+1)} function prev(){if(cur>0)go(cur-1)}
 
 document.addEventListener('keydown',e=>{
+  if(!deckReady) return;
   if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}
   if(e.key==='ArrowLeft'){e.preventDefault();prev();}
 });
 let swipeOk = true;
 document.addEventListener('touchstart',e=>{tx0=e.changedTouches[0].screenX;ty0=e.changedTouches[0].screenY;swipeOk=!e.target.closest('.tbl-wrap');},{passive:true});
-document.addEventListener('touchend',e=>{if(!swipeOk)return;const dx=e.changedTouches[0].screenX-tx0,dy=e.changedTouches[0].screenY-ty0;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){dx<0?next():prev();}},{passive:true});
+document.addEventListener('touchend',e=>{if(!deckReady||!swipeOk)return;const dx=e.changedTouches[0].screenX-tx0,dy=e.changedTouches[0].screenY-ty0;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){dx<0?next():prev();}},{passive:true});
 
-buildDeck(); go(0);
+// Password gate — deck is built only after unlock; the password itself never
+// appears here, only its SHA-256 digest.
+const GATE_HASH = '41fbc8b83245ac46073109e06ed1fd22ff1b23df622410d6ac8df88812005984';
+let deckReady = false;
+function unlock(){
+  if(!deckReady){ buildDeck(); go(0); deckReady = true; }
+  document.getElementById('gate').classList.add('off');
+}
+async function sha256hex(s){
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+async function tryGate(){
+  const inp = document.getElementById('gate-in');
+  const h = await sha256hex(inp.value.trim());
+  if(h===GATE_HASH){
+    try{ sessionStorage.setItem('viret_gate',h); }catch(e){}
+    unlock();
+  }else{
+    document.getElementById('gate-err').textContent = 'Incorrect password.';
+    inp.select();
+  }
+}
+document.getElementById('gate-form').addEventListener('submit',e=>{ e.preventDefault(); tryGate(); });
+(function(){
+  try{ if(sessionStorage.getItem('viret_gate')===GATE_HASH){ unlock(); return; } }catch(e){}
+  document.getElementById('gate-in').focus();
+})();
 
 // Assemble the contact email at runtime so it never appears in static HTML.
 (function(){
